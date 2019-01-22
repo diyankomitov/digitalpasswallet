@@ -1,0 +1,52 @@
+﻿"departure_time_label" = "Heenvlucht";
+
+"departure_date_label" = "Datum";
+
+"gate_close_time_label" = "Gate sluit";
+
+"queue_name_label" = "Wachtrij";
+
+"seat_number_label" = "Stoel";
+
+"seat_paid_number_label" = "Stoel*";
+
+"passenger_name_label" = "Passagier";
+
+"flight_number_label" = "Vluchtnr.";
+
+"sequence_number_label" = "Reeks";
+
+"recordlocator_label" = "Referentie";
+
+"departure_station_label" = "Van";
+
+"arrival_station_label" = "Naar";
+
+"baggage_label" = "Bagage";
+
+"discount_label" = "Korting";
+
+"fast_track" = "Fast Track";
+
+"business_plus" = "Flexi Plus";
+
+"leisure_plus" = "Plus";
+
+"infant" = "Baby";
+
+"queue_other" = "Zonder instappen met Prioriteit";
+
+"queue_priority" = "Prioriteit";
+
+"boarding_pass" = "Boardingkaart";
+
+"ssr_label" = "Reisextra's";
+
+"bags_collected_at_label" = "Bagage opgehaald op";
+
+"connection_flight_label" = "Aansluitende vlucht - Eindbestemming";
+
+"departure_station" = "Barcelona T2";
+
+"arrival_station" = "Glasgow (Prestwick)";
+

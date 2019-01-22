@@ -1,0 +1,52 @@
+﻿"departure_time_label" = "Αναχώρηση";
+
+"departure_date_label" = "Ημ/νία";
+
+"gate_close_time_label" = "Κλείνει";
+
+"queue_name_label" = "Σειρά αναμονής";
+
+"seat_number_label" = "Θέση";
+
+"seat_paid_number_label" = "Θέση*";
+
+"passenger_name_label" = "Επιβάτης";
+
+"flight_number_label" = "Αριθμός πτήσης";
+
+"sequence_number_label" = "Ακολουθία";
+
+"recordlocator_label" = "Κράτηση";
+
+"departure_station_label" = "Από";
+
+"arrival_station_label" = "Προς";
+
+"baggage_label" = "Αποσκευές";
+
+"discount_label" = "Έκπτωση";
+
+"fast_track" = "Fast Track";
+
+"business_plus" = "Flexi Plus";
+
+"leisure_plus" = "Plus";
+
+"infant" = "Βρέφος";
+
+"queue_other" = "Μη προτεραιοτητασ";
+
+"queue_priority" = "Προτεραιότητα";
+
+"boarding_pass" = "Κάρτα επιβίβασης";
+
+"ssr_label" = "Επιπλέον υπηρεσίες ταξιδιού";
+
+"bags_collected_at_label" = "Οι αποσκευές παραδίδονται σε";
+
+"connection_flight_label" = "Πτήση ανταπόκρισης - Τελικό";
+
+"departure_station" = "Βαρκελώνη Ελ Πρατ T2";
+
+"arrival_station" = "Γλασκώβη (Πρέστβικ)";
+

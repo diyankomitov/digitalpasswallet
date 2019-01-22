@@ -1,0 +1,52 @@
+﻿"departure_time_label" = "Wylot";
+
+"departure_date_label" = "Data";
+
+"gate_close_time_label" = "Zamknięcie bramki";
+
+"queue_name_label" = "Kolejka";
+
+"seat_number_label" = "Miejsce";
+
+"seat_paid_number_label" = "Miejsce*";
+
+"passenger_name_label" = "Pasażer";
+
+"flight_number_label" = "Nr lotu";
+
+"sequence_number_label" = "Kolejność";
+
+"recordlocator_label" = "Numer referencyjny";
+
+"departure_station_label" = "Z";
+
+"arrival_station_label" = "Do";
+
+"baggage_label" = "Bagaż";
+
+"discount_label" = "Ulga";
+
+"fast_track" = "Fast Track";
+
+"business_plus" = "Flexi Plus";
+
+"leisure_plus" = "Plus";
+
+"infant" = "Niemowlę";
+
+"queue_other" = "Bez pierwszeństwa wejścia na pokład";
+
+"queue_priority" = "Pierwszeństwo";
+
+"boarding_pass" = "Karta Pokładowa";
+
+"ssr_label" = "Dodatki do podróży";
+
+"bags_collected_at_label" = "Bagaże odbierane w";
+
+"connection_flight_label" = "Lot z przesiadką - Docelowy";
+
+"departure_station" = "Barcelona T2";
+
+"arrival_station" = "Glasgow (Prestwick)";
+

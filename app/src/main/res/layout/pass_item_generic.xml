@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="GenericDataBinding">
+
+        <variable
+            name="pass"
+            type="com.diyankomitov.digitalpasswallet.models.pass.Pass" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:cardBackgroundColor="@{pass.backgroundColor}"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="1dp"
+            app:cardMaxElevation="2dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="3">
+                <!--TODO: remove src and replace with real src from java-->
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/pass_logo_cd"
+                    android:maxHeight="50dp"
+                    android:maxWidth="160dp"
+                    android:src="@{pass.logo}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/logo_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="5dp"
+                    android:text="@{pass.logoText}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/logo"
+                    app:layout_constraintEnd_toStartOf="@+id/header_label_3"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/logo"
+                    app:layout_constraintTop_toTopOf="@+id/logo"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintWidth_default="wrap" />
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/header_label_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="end|center_vertical"
+                    android:maxLines="1"
+                    android:padding="1dp"
+                    android:text="@{pass.headerFields.get(0).getLabel()}"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@+id/logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/logo"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/header_text_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="end|center_vertical"
+                    android:maxLines="1"
+                    android:padding="1dp"
+                    android:text="@{pass.headerFields.get(0).getValue()}"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="@+id/header_label_1"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/header_label_1"
+                    app:layout_constraintTop_toBottomOf="@+id/header_label_1" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/header_label_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end|center_vertical"
+                    android:maxLines="1"
+                    android:padding="1dp"
+                    android:text="@{pass.headerFields.size() >= 2 ? pass.headerFields.get(1).getLabel() : null}"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@+id/header_label_1"
+                    app:layout_constraintEnd_toStartOf="@+id/header_label_1"
+                    app:layout_constraintTop_toTopOf="@+id/header_label_1" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/header_text_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="end|center_vertical"
+                    android:maxLines="1"
+                    android:padding="1dp"
+                    android:text="@{pass.headerFields.size() >= 2 ? pass.headerFields.get(1).getValue() : null}"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="@+id/header_label_2"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/header_label_2"
+                    app:layout_constraintTop_toBottomOf="@+id/header_label_2" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/header_label_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end|center_vertical"
+                    android:maxLines="1"
+                    android:padding="1dp"
+                    android:text="@{pass.headerFields.size() >= 3 ? pass.headerFields.get(2).getLabel() : null}"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@+id/header_label_2"
+                    app:layout_constraintEnd_toStartOf="@+id/header_label_2"
+                    app:layout_constraintTop_toTopOf="@+id/header_label_2"
+                    app:layout_constraintVertical_bias="0.25" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/header_text_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="end|center_vertical"
+                    android:maxLines="1"
+                    android:padding="1dp"
+                    android:text="@{pass.headerFields.size() >= 3 ? pass.headerFields.get(2).getValue() : null}"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="@+id/header_label_3"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/header_label_3"
+                    app:layout_constraintTop_toBottomOf="@+id/header_label_3" />
+
+                <ImageView
+                    android:id="@+id/thumbnail"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@{pass.thumbnail}"
+                    app:layout_constraintBottom_toBottomOf="@+id/primary_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/primary_label" />
+
+                <TextView
+                    android:id="@+id/primary_label"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:maxLines="1"
+                    android:text="@{pass.primaryFields.get(0).getLabel()}"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toStartOf="@+id/thumbnail"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/logo_text_view" />
+
+                <TextView
+                    android:id="@+id/primary_text"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="1"
+                    android:text="@{pass.primaryFields.get(0).getValue()}"
+                    app:autoSizeMinTextSize="1sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toStartOf="@+id/thumbnail"
+                    app:layout_constraintStart_toStartOf="@+id/primary_label"
+                    app:layout_constraintTop_toBottomOf="@+id/primary_label" />
+
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/secondary_fields"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:alignItems="center"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/primary_text">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/secondary_label_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.get(0).getLabel()}" />
+
+                        <TextView
+                            android:id="@+id/secondary_text_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.get(0).getValue()}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/secondary_label_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.size() >= 2 ? pass.secondaryFields.get(1).getLabel() : null}" />
+
+                        <TextView
+                            android:id="@+id/secondary_text_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.size() >= 2 ?pass.secondaryFields.get(1).getValue() : null}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/secondary_label_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.size() >= 3 ? pass.secondaryFields.get(2).getLabel() : null}" />
+
+                        <TextView
+                            android:id="@+id/secondary_text_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.size() >= 3 ? pass.secondaryFields.get(2).getValue() : null}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/secondary_label_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.size() >= 4 ? pass.secondaryFields.get(3).getLabel() : null}" />
+
+                        <TextView
+                            android:id="@+id/secondary_text_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.size() >= 4 ? pass.secondaryFields.get(3).getValue() : null}" />
+
+                    </LinearLayout>
+
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/auxiliary_fields"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:alignItems="center"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start"
+                    app:layout_constraintBottom_toTopOf="@+id/barcode_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/secondary_fields">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/auxiliary_label_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.auxiliaryFields.get(0).getLabel()}" />
+
+                        <TextView
+                            android:id="@+id/auxiliary_text_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.auxiliaryFields.get(0).getValue()}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/auxiliary_label_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.size() >= 2 ? pass.auxiliaryFields.get(1).getLabel() : null}" />
+
+                        <TextView
+                            android:id="@+id/auxiliary_text_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.size() >= 2 ? pass.auxiliaryFields.get(1).getValue() : null}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/auxiliary_label_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.size() >= 3 ? pass.auxiliaryFields.get(2).getLabel() : null}" />
+
+                        <TextView
+                            android:id="@+id/auxiliary_text_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.size() >= 3 ? pass.auxiliaryFields.get(2).getValue() : null}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/auxiliary_label_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.size() >= 4 ? pass.auxiliaryFields.get(3).getLabel() : null}" />
+
+                        <TextView
+                            android:id="@+id/auxiliary_text_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:maxLines="1"
+                            app:autoSizeMinTextSize="1sp"
+                            app:autoSizeTextType="uniform"
+                            android:text="@{pass.secondaryFields.size() >= 4 ? pass.auxiliaryFields.get(3).getValue() : null}" />
+
+                    </LinearLayout>
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <ImageView
+                    android:id="@+id/barcode_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="16dp"
+                    android:contentDescription="@string/pass_barcode_cd"
+                    android:src="@{pass.barcode}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="W,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.3"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</layout>

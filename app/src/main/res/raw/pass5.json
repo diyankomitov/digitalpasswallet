@@ -1,0 +1,75 @@
+{
+  "description" : "Cineworld - Deadpool tickets",
+  "organizationName" : "Cineworld",
+  "passTypeIdentifier" : "pass.cinemaworld.event.ticket",
+  "serialNumber" : "CINEWORLD_TICKET_aIZRwMyZVzeg",
+  "teamIdentifier" : "9H5YBNGP7N",
+  "barcode" : {
+    "format" : "PKBarcodeFormatQR",
+    "message" : "WGTR5RL",
+    "messageEncoding" : "iso-8859-1"
+  },
+  "backgroundColor" : "rgb(0, 0, 0)",
+  "foregroundColor" : "rgb(255, 255, 255)",
+  "labelColor" : "rgb(166, 157, 164)",
+  "ignoresTimeZone" : false,
+  "relevantDate" : "2016-02-13T16:20:00Z",
+  "formatVersion" : 1,
+  "eventTicket" : {
+    "headerFields" : [ {
+      "key" : "movie_datetime",
+      "label" : "SAT, 13TH FEB",
+      "textAlignment" : "PKTextAlignmentRight",
+      "value" : "04:20 PM"
+    } ],
+    "primaryFields" : [ {
+      "key" : "movie_title",
+      "label" : "7 Renfrew Street, Glasgow, G2 3AB",
+      "textAlignment" : "PKTextAlignmentLeft",
+      "value" : "Deadpool"
+    } ],
+    "secondaryFields" : [ {
+      "key" : "movie_screen_seats",
+      "label" : "SCREEN 13",
+      "textAlignment" : "PKTextAlignmentLeft",
+      "value" : "Standard Seating L1,L2\n"
+    } ],
+    "backFields" : [ {
+      "key" : "references",
+      "label" : "Reference",
+      "value" : "WGTR5RL"
+    }, {
+      "key" : "tickets",
+      "label" : "Tickets",
+      "value" : "Number of people going: 2\n2 X Student\n"
+    }, {
+      "key" : "seats",
+      "label" : "Seats",
+      "value" : "Standard Seating L1,L2\n"
+    }, {
+      "key" : "cinema_address",
+      "label" : "Venue",
+      "value" : "7 Renfrew Street, Glasgow, G2 3AB"
+    }, {
+      "key" : "customer_service_phone",
+      "label" : "Customer Services",
+      "dataDetectorTypes" : [ "PKDataDetectorTypePhoneNumber" ],
+      "value" : "0333 003 3444"
+    }, {
+      "key" : "cineworld_url",
+      "label" : "Site",
+      "dataDetectorTypes" : [ "PKDataDetectorTypeLink" ],
+      "value" : "http://cineworld.co.uk"
+    }, {
+      "key" : "tracing_details",
+      "label" : "Tracing Details",
+      "value" : "'Cineworld' and 'Cineworld Cinemas' are trading names of Cineworld Cinemas Limited , a limited company registed in England and Wales with company number 01915767 whose registed office is at Power Roads Studios , 114 Power Road , Chiswick , London W14 5PY with VAT number 606197048"
+    } ],
+    "auxiliaryFields" : [ {
+      "key" : "collection_details",
+      "label" : "COLLECTION DETAILS",
+      "textAlignment" : "PKTextAlignmentLeft",
+      "value" : "see reverse"
+    } ]
+  }
+}

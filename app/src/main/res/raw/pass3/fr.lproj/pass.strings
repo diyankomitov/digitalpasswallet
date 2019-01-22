@@ -1,0 +1,52 @@
+﻿"departure_time_label" = "Vol aller";
+
+"departure_date_label" = "Date";
+
+"gate_close_time_label" = "Fermeture de la porte";
+
+"queue_name_label" = "Queue";
+
+"seat_number_label" = "Siège";
+
+"seat_paid_number_label" = "Siège*";
+
+"passenger_name_label" = "Passager";
+
+"flight_number_label" = "Vol n°";
+
+"sequence_number_label" = "Ordre";
+
+"recordlocator_label" = "Référence";
+
+"departure_station_label" = "De";
+
+"arrival_station_label" = "À";
+
+"baggage_label" = "Bagages";
+
+"discount_label" = "Réduction";
+
+"fast_track" = "Fast Track";
+
+"business_plus" = "Flexi Plus";
+
+"leisure_plus" = "Plus";
+
+"infant" = "Bébé";
+
+"queue_other" = "Pas Prioritaire";
+
+"queue_priority" = "Prioritaire";
+
+"boarding_pass" = "Coupon D'embarquement";
+
+"ssr_label" = "Suppléments de voyage";
+
+"bags_collected_at_label" = "Bagages récupérés à";
+
+"connection_flight_label" = "Vol en correspondance - Final";
+
+"departure_station" = "Barcelone T2";
+
+"arrival_station" = "Glasgow (Prestwick)";
+
