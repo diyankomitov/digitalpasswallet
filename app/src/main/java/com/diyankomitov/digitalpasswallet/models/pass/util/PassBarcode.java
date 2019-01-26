@@ -1,4 +1,4 @@
-package com.diyankomitov.digitalpasswallet.models.pass;
+package com.diyankomitov.digitalpasswallet.models.pass.util;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.CharacterSetECI;

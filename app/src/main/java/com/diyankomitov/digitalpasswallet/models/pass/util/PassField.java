@@ -1,4 +1,4 @@
-package com.diyankomitov.digitalpasswallet.models.pass;
+package com.diyankomitov.digitalpasswallet.models.pass.util;
 
 import java.util.List;
 

@@ -2,6 +2,12 @@ package com.diyankomitov.digitalpasswallet.models.pass;
 
 import android.graphics.Bitmap;
 
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassBarcode;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassBeacon;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassField;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassLocation;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassType;
+
 import java.util.List;
 
 public interface Pass {

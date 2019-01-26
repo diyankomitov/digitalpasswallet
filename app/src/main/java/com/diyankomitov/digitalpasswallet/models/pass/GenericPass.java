@@ -1,8 +1,6 @@
 package com.diyankomitov.digitalpasswallet.models.pass;
 
-import android.graphics.Bitmap;
-
-import java.util.List;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassType;
 
 public class GenericPass extends AbstractPass {
 

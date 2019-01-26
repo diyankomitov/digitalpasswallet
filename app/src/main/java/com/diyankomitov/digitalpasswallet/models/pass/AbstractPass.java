@@ -3,12 +3,14 @@ package com.diyankomitov.digitalpasswallet.models.pass;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
-import com.google.zxing.BarcodeFormat;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassBarcode;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassBeacon;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassField;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassLocation;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassType;
 import com.google.zxing.WriterException;
-import com.google.zxing.common.CharacterSetECI;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractPass implements Pass {

@@ -9,4 +9,5 @@
     <string name="add_pass">Add Pass</string>
     <string name="pass_barcode_cd">Barcode</string>
     <string name="pass_logo_cd">Logo</string>
+    <string name="pass_thumbnail_cd">Thumbnail</string>
 </resources>

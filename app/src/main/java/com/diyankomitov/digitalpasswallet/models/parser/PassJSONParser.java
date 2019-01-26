@@ -3,10 +3,10 @@ package com.diyankomitov.digitalpasswallet.models.parser;
 import android.util.Log;
 
 import com.diyankomitov.digitalpasswallet.models.pass.Pass;
-import com.diyankomitov.digitalpasswallet.models.pass.PassBarcode;
-import com.diyankomitov.digitalpasswallet.models.pass.PassBeacon;
-import com.diyankomitov.digitalpasswallet.models.pass.PassField;
-import com.diyankomitov.digitalpasswallet.models.pass.PassLocation;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassBarcode;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassBeacon;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassField;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassLocation;
 
 import org.json.JSONArray;
 import org.json.JSONException;
