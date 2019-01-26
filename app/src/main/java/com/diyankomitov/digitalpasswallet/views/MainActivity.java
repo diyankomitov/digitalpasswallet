@@ -1,30 +1,41 @@
 package com.diyankomitov.digitalpasswallet.views;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PagerSnapHelper;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.LayoutManager;
-import android.support.v7.widget.SnapHelper;
-import android.support.v7.widget.Toolbar;
+
+import com.diyankomitov.digitalpasswallet.repository.Wallet;
+import com.diyankomitov.digitalpasswallet.viewmodel.PassViewModel;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.LayoutManager;
+import androidx.recyclerview.widget.SnapHelper;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.diyankomitov.digitalpasswallet.R;
 import com.diyankomitov.digitalpasswallet.viewmodel.WalletViewModel;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private WalletViewModel walletViewModel;
+    private RecyclerView passRecyclerView;
+    private PassAdapter passAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // toolbar, sidebar, menus, etc
         setContentView(R.layout.main_activity);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -38,20 +49,30 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //main view/recycler view/pass view
+
+        walletViewModel = ViewModelProviders.of(this).get(WalletViewModel.class);
+        walletViewModel.init();
+
         initPassRecyclerView();
+
+        //TODO: maybe put in separate method
+        walletViewModel.getPassViewModels().observe(this, new Observer<List<PassViewModel>>() {
+            @Override
+            public void onChanged(List<PassViewModel> passViewModels) {
+                passAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private void initPassRecyclerView() {
         LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
-        RecyclerView passRecyclerView = findViewById(R.id.passRecyclerView);
+        passRecyclerView = findViewById(R.id.passRecyclerView);
         passRecyclerView.setLayoutManager(layoutManager);
         passRecyclerView.setHasFixedSize(true);
 
-
-        WalletViewModel walletViewModel = ViewModelProviders.of(this).get(WalletViewModel.class);
-
-        PassAdapter passAdapter = new PassAdapter(walletViewModel,this);
+        passAdapter = new PassAdapter(this, walletViewModel.getPassViewModels().getValue());
         passRecyclerView.setAdapter(passAdapter);
 
         SnapHelper snapHelper = new PagerSnapHelper();

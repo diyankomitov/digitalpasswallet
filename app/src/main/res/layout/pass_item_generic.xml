@@ -13,18 +13,18 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@{passViewModel.backgroundImage}"
-            app:cardBackgroundColor="@{passViewModel.backgroundColor}"
+            app:backgroundBitmap="@{passViewModel.backgroundImage}"
+            app:backgroundColor="@{passViewModel.backgroundColor}"
             app:cardCornerRadius="20dp"
             app:cardElevation="1dp"
             app:cardMaxElevation="2dp">
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:weightSum="3">
@@ -39,7 +39,7 @@
                     android:contentDescription="@string/pass_logo_cd"
                     android:maxHeight="50dp"
                     android:maxWidth="160dp"
-                    android:src="@{passViewModel.logo}"
+                    app:imageBitmap="@{passViewModel.logo}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +54,7 @@
                     android:paddingEnd="5dp"
                     android:paddingStart="5dp"
                     android:text="@{passViewModel.logoText}"
-                    android:textColor="@{passViewModel.foregroundColor}"
+                    app:textColor="@{passViewModel.foregroundColor}"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/logo"
                     app:layout_constraintEnd_toStartOf="@+id/header_label_3"
@@ -65,7 +65,7 @@
                     app:layout_constraintWidth_default="wrap" />
 
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/header_label_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                     android:maxLines="1"
                     android:padding="1dp"
                     android:text="@{passViewModel.headerLabel1}"
-                    android:textColor="@{passViewModel.labelColor}"
+                    app:textColor="@{passViewModel.labelColor}"
                     app:autoSizeMinTextSize="1sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toBottomOf="@+id/logo"
@@ -82,7 +82,7 @@
                     app:layout_constraintTop_toTopOf="@+id/logo"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/header_value_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                     android:maxLines="1"
                     android:padding="1dp"
                     android:text="@{passViewModel.headerValue1}"
-                    android:textColor="@{passViewModel.foregroundColor}"
+                    app:textColor="@{passViewModel.foregroundColor}"
                     app:autoSizeMinTextSize="1sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toEndOf="@+id/header_label_1"
@@ -99,7 +99,7 @@
                     app:layout_constraintStart_toStartOf="@+id/header_label_1"
                     app:layout_constraintTop_toBottomOf="@+id/header_label_1" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/header_label_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -108,14 +108,14 @@
                     android:maxLines="1"
                     android:padding="1dp"
                     android:text="@{passViewModel.headerLabel2}"
-                    android:textColor="@{passViewModel.labelColor}"
+                    app:textColor="@{passViewModel.labelColor}"
                     app:autoSizeMinTextSize="1sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toBottomOf="@+id/header_label_1"
                     app:layout_constraintEnd_toStartOf="@+id/header_label_1"
                     app:layout_constraintTop_toTopOf="@+id/header_label_1" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/header_value_2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                     android:maxLines="1"
                     android:padding="1dp"
                     android:text="@{passViewModel.headerValue2}"
-                    android:textColor="@{passViewModel.foregroundColor}"
+                    app:textColor="@{passViewModel.foregroundColor}"
                     app:autoSizeMinTextSize="1sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toEndOf="@+id/header_label_2"
@@ -132,7 +132,7 @@
                     app:layout_constraintStart_toStartOf="@+id/header_label_2"
                     app:layout_constraintTop_toBottomOf="@+id/header_label_2" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/header_label_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
                     android:maxLines="1"
                     android:padding="1dp"
                     android:text="@{passViewModel.headerLabel3}"
-                    android:textColor="@{passViewModel.labelColor}"
+                    app:textColor="@{passViewModel.labelColor}"
                     app:autoSizeMinTextSize="1sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toBottomOf="@+id/header_label_2"
@@ -149,7 +149,7 @@
                     app:layout_constraintTop_toTopOf="@+id/header_label_2"
                     app:layout_constraintVertical_bias="0.25" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/header_value_3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -158,7 +158,7 @@
                     android:maxLines="1"
                     android:padding="1dp"
                     android:text="@{passViewModel.headerValue3}"
-                    android:textColor="@{passViewModel.foregroundColor}"
+                    app:textColor="@{passViewModel.foregroundColor}"
                     app:autoSizeMinTextSize="1sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toEndOf="@+id/header_label_3"
@@ -172,7 +172,7 @@
                     android:layout_height="90dp"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="@string/pass_thumbnail_cd"
-                    android:src="@{passViewModel.thumbnail}"
+                    app:imageBitmap="@{passViewModel.thumbnail}"
                     app:layout_constraintBottom_toBottomOf="@+id/primary_value"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/primary_label" />
@@ -186,7 +186,7 @@
                     android:layout_marginTop="24dp"
                     android:maxLines="1"
                     android:text="@{passViewModel.primaryLabel1}"
-                    android:textColor="@{passViewModel.labelColor}"
+                    app:textColor="@{passViewModel.labelColor}"
                     app:autoSizeMinTextSize="1sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toStartOf="@+id/thumbnail"
@@ -201,7 +201,7 @@
                     android:layout_marginTop="10dp"
                     android:maxLines="1"
                     android:text="@{passViewModel.primaryValue1}"
-                    android:textColor="@{passViewModel.foregroundColor}"
+                    app:textColor="@{passViewModel.foregroundColor}"
                     app:autoSizeMinTextSize="1sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toStartOf="@+id/thumbnail"
@@ -235,7 +235,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryLabel1}"
-                            android:textColor="@{passViewModel.labelColor}"
+                            app:textColor="@{passViewModel.labelColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -245,7 +245,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryValue1}"
-                            android:textColor="@{passViewModel.foregroundColor}"
+                            app:textColor="@{passViewModel.foregroundColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -262,7 +262,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryLabel2}"
-                            android:textColor="@{passViewModel.labelColor}"
+                            app:textColor="@{passViewModel.labelColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -272,7 +272,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryValue2}"
-                            android:textColor="@{passViewModel.foregroundColor}"
+                            app:textColor="@{passViewModel.foregroundColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -289,7 +289,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryLabel3}"
-                            android:textColor="@{passViewModel.labelColor}"
+                            app:textColor="@{passViewModel.labelColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -299,7 +299,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryValue3}"
-                            android:textColor="@{passViewModel.foregroundColor}"
+                            app:textColor="@{passViewModel.foregroundColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
                     </LinearLayout>
@@ -315,7 +315,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryLabel4}"
-                            android:textColor="@{passViewModel.labelColor}"
+                            app:textColor="@{passViewModel.labelColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -325,7 +325,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryValue4}"
-                            android:textColor="@{passViewModel.foregroundColor}"
+                            app:textColor="@{passViewModel.foregroundColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -362,7 +362,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.auxiliaryLabel1}"
-                            android:textColor="@{passViewModel.labelColor}"
+                            app:textColor="@{passViewModel.labelColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -372,7 +372,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.auxiliaryValue1}"
-                            android:textColor="@{passViewModel.foregroundColor}"
+                            app:textColor="@{passViewModel.foregroundColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -389,7 +389,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryLabel2}"
-                            android:textColor="@{passViewModel.labelColor}"
+                            app:textColor="@{passViewModel.labelColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -399,7 +399,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryValue2}"
-                            android:textColor="@{passViewModel.foregroundColor}"
+                            app:textColor="@{passViewModel.foregroundColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -416,7 +416,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryLabel3}"
-                            android:textColor="@{passViewModel.labelColor}"
+                            app:textColor="@{passViewModel.labelColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -426,7 +426,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryValue3}"
-                            android:textColor="@{passViewModel.foregroundColor}"
+                            app:textColor="@{passViewModel.foregroundColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -443,7 +443,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryLabel4}"
-                            android:textColor="@{passViewModel.labelColor}"
+                            app:textColor="@{passViewModel.labelColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -453,7 +453,7 @@
                             android:layout_height="20dp"
                             android:maxLines="1"
                             android:text="@{passViewModel.secondaryValue4}"
-                            android:textColor="@{passViewModel.foregroundColor}"
+                            app:textColor="@{passViewModel.foregroundColor}"
                             app:autoSizeMinTextSize="1sp"
                             app:autoSizeTextType="uniform" />
 
@@ -467,7 +467,7 @@
                     android:layout_height="0dp"
                     android:layout_marginBottom="16dp"
                     android:contentDescription="@string/pass_barcode_cd"
-                    android:src="@{passViewModel.barcode}"
+                    app:imageBitmap="@{passViewModel.barcode}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="W,1:1"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -475,8 +475,8 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
 
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 </layout>

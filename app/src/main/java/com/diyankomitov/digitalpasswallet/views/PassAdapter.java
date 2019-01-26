@@ -1,9 +1,5 @@
 package com.diyankomitov.digitalpasswallet.views;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.databinding.ViewDataBinding;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -13,7 +9,14 @@ import com.diyankomitov.digitalpasswallet.databinding.EventTicketDataBinding;
 import com.diyankomitov.digitalpasswallet.databinding.GenericDataBinding;
 import com.diyankomitov.digitalpasswallet.databinding.StoreCardDataBinding;
 import com.diyankomitov.digitalpasswallet.models.pass.util.PassType;
-import com.diyankomitov.digitalpasswallet.viewmodel.WalletViewModel;
+import com.diyankomitov.digitalpasswallet.viewmodel.PassViewModel;
+
+import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class PassAdapter extends RecyclerView.Adapter<PassViewHolder> {
 
@@ -23,16 +26,14 @@ public class PassAdapter extends RecyclerView.Adapter<PassViewHolder> {
     private static final int PASS_TYPE_GENERIC = 3;
     private static final int PASS_TYPE_STORE_CARD = 4;
 
-//    private List<Pass> passes;
-    private WalletViewModel walletViewModel;
+    private List<PassViewModel> passViewModels;
     private LifecycleOwner lifecycleOwner;
     private LayoutInflater layoutInflater;
 
-    public PassAdapter(WalletViewModel walletViewModel, LifecycleOwner lifecycleOwner) {
-        this.walletViewModel = walletViewModel;
+    public PassAdapter(LifecycleOwner lifecycleOwner, List<PassViewModel> passViewModels) {
         this.lifecycleOwner = lifecycleOwner;
+        this.passViewModels = passViewModels;
     }
-
 
     @NonNull
     @Override
@@ -72,7 +73,7 @@ public class PassAdapter extends RecyclerView.Adapter<PassViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        PassType passType = walletViewModel.getPassType(position);
+        PassType passType = passViewModels.get(position).getPassType().getValue();  //TODO: Evaluate if best way to do
         switch (passType) {
             case BOARDING_PASS:
                 return PASS_TYPE_BOARDING_PASS;
@@ -91,11 +92,11 @@ public class PassAdapter extends RecyclerView.Adapter<PassViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PassViewHolder holder, int position) {
-        holder.bindPassViewModel(walletViewModel.getPassViewModel(position));
+        holder.bindPassViewModel(passViewModels.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return walletViewModel.getPassCount();
+        return passViewModels.size();
     }
 }

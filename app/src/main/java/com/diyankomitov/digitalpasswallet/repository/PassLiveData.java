@@ -1,6 +1,6 @@
 package com.diyankomitov.digitalpasswallet.repository;
 
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 
 import com.diyankomitov.digitalpasswallet.models.pass.Pass;
 

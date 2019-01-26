@@ -1,7 +1,7 @@
 package com.diyankomitov.digitalpasswallet.views;
 
-import android.databinding.ViewDataBinding;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.ViewDataBinding;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.diyankomitov.digitalpasswallet.BR;
 import com.diyankomitov.digitalpasswallet.viewmodel.PassViewModel;

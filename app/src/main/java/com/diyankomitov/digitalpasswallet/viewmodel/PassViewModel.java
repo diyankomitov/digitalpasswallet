@@ -1,12 +1,17 @@
 package com.diyankomitov.digitalpasswallet.viewmodel;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
 import android.graphics.Bitmap;
 
 import com.diyankomitov.digitalpasswallet.models.pass.Pass;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassField;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassType;
+
+import java.util.List;
+import java.util.Objects;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 public class PassViewModel extends ViewModel {
 
@@ -59,7 +64,9 @@ public class PassViewModel extends ViewModel {
     private MutableLiveData<String> auxiliaryLabel5;
     private MutableLiveData<String> auxiliaryValue5;
 
-    public PassViewModel(LiveData<Pass> passLiveData) {
+    private MutableLiveData<PassType> passType;
+
+    public PassViewModel(Pass pass) {
         this.backgroundImage = new MutableLiveData<>();
         this.barcode = new MutableLiveData<>();
         this.footer = new MutableLiveData<>();
@@ -105,7 +112,8 @@ public class PassViewModel extends ViewModel {
         this.auxiliaryLabel5 = new MutableLiveData<>();
         this.auxiliaryValue5 = new MutableLiveData<>();
 
-        Pass pass = passLiveData.getValue();
+        this.passType = new MutableLiveData<>();
+
         if (pass != null) {
             this.backgroundImage.setValue(pass.getBackgroundImage());
             this.barcode.setValue(pass.getBarcode());
@@ -120,39 +128,65 @@ public class PassViewModel extends ViewModel {
             this.foregroundColor.setValue(pass.getForegroundColor());
             this.labelColor.setValue(pass.getLabelColor());
 
-            this.headerLabel1.setValue(pass.getHeaderFields().get(0).getLabel());
-            this.headerValue1.setValue(pass.getHeaderFields().get(0).getValue());
-            this.headerLabel2.setValue(pass.getHeaderFields().get(1).getLabel());
-            this.headerValue2.setValue(pass.getHeaderFields().get(1).getValue());
-            this.headerLabel3.setValue(pass.getHeaderFields().get(2).getLabel());
-            this.headerValue3.setValue(pass.getHeaderFields().get(2).getValue());
+            List<PassField> headerFields = pass.getHeaderFields();
+            this.headerLabel1.setValue(getPassFieldLabel(headerFields, 0));
+            this.headerValue1.setValue(getPassFieldValue(headerFields, 0));
+            this.headerLabel2.setValue(getPassFieldLabel(headerFields, 1));
+            this.headerValue2.setValue(getPassFieldValue(headerFields, 1));
+            this.headerLabel3.setValue(getPassFieldLabel(headerFields, 2));
+            this.headerValue3.setValue(getPassFieldValue(headerFields, 2));
 
-            this.primaryLabel1.setValue(pass.getPrimaryFields().get(0).getLabel());
-            this.primaryValue1.setValue(pass.getPrimaryFields().get(0).getValue());
-            this.primaryLabel2.setValue(pass.getPrimaryFields().get(1).getLabel());
-            this.primaryValue2.setValue(pass.getPrimaryFields().get(1).getValue());
+            List<PassField> primaryFields = pass.getHeaderFields();
+            this.primaryLabel1.setValue(getPassFieldLabel(primaryFields, 0));
+            this.primaryValue1.setValue(getPassFieldValue(primaryFields, 0));
+            this.primaryLabel2.setValue(getPassFieldLabel(primaryFields, 1));
+            this.primaryValue2.setValue(getPassFieldValue(primaryFields, 1));
 
-            this.secondaryLabel1.setValue(pass.getSecondaryFields().get(0).getLabel());
-            this.secondaryValue1.setValue(pass.getSecondaryFields().get(0).getValue());
-            this.secondaryLabel2.setValue(pass.getSecondaryFields().get(1).getLabel());
-            this.secondaryValue2.setValue(pass.getSecondaryFields().get(1).getValue());
-            this.secondaryLabel3.setValue(pass.getSecondaryFields().get(2).getLabel());
-            this.secondaryValue3.setValue(pass.getSecondaryFields().get(2).getValue());
-            this.secondaryLabel4.setValue(pass.getSecondaryFields().get(3).getLabel());
-            this.secondaryValue4.setValue(pass.getSecondaryFields().get(3).getValue());
+            List<PassField> secondaryFields = pass.getHeaderFields();
+            this.secondaryLabel1.setValue(getPassFieldLabel(secondaryFields, 0));
+            this.secondaryValue1.setValue(getPassFieldValue(secondaryFields, 0));
+            this.secondaryLabel2.setValue(getPassFieldLabel(secondaryFields, 1));
+            this.secondaryValue2.setValue(getPassFieldValue(secondaryFields, 1));
+            this.secondaryLabel3.setValue(getPassFieldLabel(secondaryFields, 2));
+            this.secondaryValue3.setValue(getPassFieldValue(secondaryFields, 2));
+            this.secondaryLabel4.setValue(getPassFieldLabel(secondaryFields, 3));
+            this.secondaryValue4.setValue(getPassFieldValue(secondaryFields, 3));
 
-            this.auxiliaryLabel1.setValue(pass.getAuxiliaryFields().get(0).getLabel());
-            this.auxiliaryValue1.setValue(pass.getAuxiliaryFields().get(0).getValue());
-            this.auxiliaryLabel2.setValue(pass.getAuxiliaryFields().get(1).getLabel());
-            this.auxiliaryValue2.setValue(pass.getAuxiliaryFields().get(1).getValue());
-            this.auxiliaryLabel3.setValue(pass.getAuxiliaryFields().get(2).getLabel());
-            this.auxiliaryValue3.setValue(pass.getAuxiliaryFields().get(2).getValue());
-            this.auxiliaryLabel4.setValue(pass.getAuxiliaryFields().get(3).getLabel());
-            this.auxiliaryValue4.setValue(pass.getAuxiliaryFields().get(3).getValue());
-            this.auxiliaryLabel5.setValue(pass.getAuxiliaryFields().get(4).getLabel());
-            this.auxiliaryValue5.setValue(pass.getAuxiliaryFields().get(4).getValue());
+            List<PassField> auxiliaryFields = pass.getHeaderFields();
+            this.auxiliaryLabel1.setValue(getPassFieldLabel(auxiliaryFields, 0));
+            this.auxiliaryValue1.setValue(getPassFieldValue(auxiliaryFields, 0));
+            this.auxiliaryLabel2.setValue(getPassFieldLabel(auxiliaryFields, 1));
+            this.auxiliaryValue2.setValue(getPassFieldValue(auxiliaryFields, 1));
+            this.auxiliaryLabel3.setValue(getPassFieldLabel(auxiliaryFields, 2));
+            this.auxiliaryValue3.setValue(getPassFieldValue(auxiliaryFields, 2));
+            this.auxiliaryLabel4.setValue(getPassFieldLabel(auxiliaryFields, 3));
+            this.auxiliaryValue4.setValue(getPassFieldValue(auxiliaryFields, 3));
+            this.auxiliaryLabel5.setValue(getPassFieldLabel(auxiliaryFields, 4));
+            this.auxiliaryValue5.setValue(getPassFieldValue(auxiliaryFields, 4));
+
+            this.passType.setValue(pass.getType());
         }
 
+    }
+
+    private String getPassFieldLabel(List<PassField> passFields, int index) {
+
+        if (passFields != null && index < passFields.size()) {
+            return passFields.get(index).getLabel();
+        }
+
+        //TODO: change to empty string?
+        return null;
+    }
+
+    private String getPassFieldValue(List<PassField> passFields, int index) {
+
+        if (passFields != null && index < passFields.size()) {
+            return passFields.get(index).getValue();
+        }
+
+        //TODO: change to empty string?
+        return null;
     }
 
     public LiveData<Bitmap> getBackgroundImage() {
@@ -309,5 +343,9 @@ public class PassViewModel extends ViewModel {
 
     public LiveData<String> getAuxiliaryValue5() {
         return auxiliaryValue5;
+    }
+
+    public LiveData<PassType> getPassType() {
+        return passType;
     }
 }

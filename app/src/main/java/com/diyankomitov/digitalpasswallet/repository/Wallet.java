@@ -1,35 +1,21 @@
 package com.diyankomitov.digitalpasswallet.repository;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
-import com.diyankomitov.digitalpasswallet.models.parser.PassJSONParser;
-import com.diyankomitov.digitalpasswallet.models.pass.BoardingCardPass;
-import com.diyankomitov.digitalpasswallet.models.pass.CouponPass;
-import com.diyankomitov.digitalpasswallet.models.pass.EventTicketPass;
 import com.diyankomitov.digitalpasswallet.models.pass.GenericPass;
 import com.diyankomitov.digitalpasswallet.models.pass.Pass;
-import com.diyankomitov.digitalpasswallet.models.pass.StoreCardPass;
+import com.diyankomitov.digitalpasswallet.models.pass.util.PassBarcode;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.common.CharacterSetECI;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Wallet {
 
 
     private static Wallet walletInstance;
-
     private List<Pass> passes;
 
     private Wallet() {
@@ -44,7 +30,7 @@ public class Wallet {
         return walletInstance;
     }
 
-    public MutableLiveData<List<Pass>> getPasses() {
+    public LiveData<List<Pass>> getPasses() {
         loadPasses();
 
         MutableLiveData<List<Pass>> passData = new MutableLiveData<>();
@@ -53,6 +39,15 @@ public class Wallet {
     }
 
     private void loadPasses() { //Get from database/room/api/filestorage/whatever
+
+        Pass pass1 = new GenericPass();
+        pass1.setLogoText("Hello World");
+        List<PassBarcode> barcodes = new ArrayList<>();
+        barcodes.add(new PassBarcode("Hello World", "Hello World", BarcodeFormat.QR_CODE, CharacterSetECI.ISO8859_1));
+        pass1.setBarcodes(barcodes);
+
+        passes.add(pass1);
+
 
 //        loadPass(R.raw.pass1, R.raw.logo1, R.raw.thumbnail1, 0);
 //        loadPass(R.raw.pass2, R.raw.logo2, 0, R.raw.strip2);
