@@ -3,6 +3,9 @@
     <color name="colorPrimary">#FF9000</color>
     <color name="colorPrimaryDark">#e48100</color>
     <color name="colorAccent">#FFFFFF</color>
+    <color name="colorLabel">#E6E9EC</color>
+    <color name="colorLabelOnLightBackground">#808080</color>
+    <color name="textUnfocused">#B3FFFFFF</color>
 </resources>
 
 

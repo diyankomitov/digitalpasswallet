@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="PassBackDataBinding">
+
+        <variable
+            name="passViewModel"
+            type="com.diyankomitov.digitalpasswallet.viewmodel.pass.PassViewModel" />
+
+        <variable
+            name="passViewHandler"
+            type="com.diyankomitov.digitalpasswallet.views.pass.util.PassViewHandler" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@{safeUnbox(passViewModel.backgroundColor)}"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="1dp"
+        app:cardMaxElevation="2dp"
+        tools:showIn="@layout/pass_item_event_ticket">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/passDeleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{() -> passViewHandler.onClickDelete(passViewModel, passBackButton)}"
+                android:text="@string/delete_button_text"
+                android:textColor="@{safeUnbox(passViewModel.foregroundColor)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/passBackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{passViewHandler::onClickClose}"
+                android:text="@string/close_button_text"
+                android:textColor="@{safeUnbox(passViewModel.foregroundColor)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:theme="@style/AppTheme.Light.DarkActionBar"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/passBackButton">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/passBackRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

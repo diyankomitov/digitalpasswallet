@@ -1,137 +1,177 @@
 package com.diyankomitov.digitalpasswallet.repository;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import android.app.Application;
+import android.os.AsyncTask;
+import android.os.Environment;
+import android.util.Log;
 
-import com.diyankomitov.digitalpasswallet.models.pass.GenericPass;
 import com.diyankomitov.digitalpasswallet.models.pass.Pass;
-import com.diyankomitov.digitalpasswallet.models.pass.util.PassBarcode;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.common.CharacterSetECI;
+import com.diyankomitov.digitalpasswallet.models.pass.PassModel;
+import com.diyankomitov.digitalpasswallet.models.pass.components.PassType;
+import com.diyankomitov.digitalpasswallet.models.room.PassDao;
+import com.diyankomitov.digitalpasswallet.models.room.PassDatabase;
+import com.diyankomitov.digitalpasswallet.repository.passloader.PassFileLoader;
+import com.diyankomitov.digitalpasswallet.repository.passloader.PassJSONParser;
 
-import java.util.ArrayList;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+
 public class Wallet {
-
-
+    
+    private static final String TAG = "Wallet";
+    
     private static Wallet walletInstance;
-    private List<Pass> passes;
-
-    private Wallet() {
-        passes = new ArrayList<>();
+    
+    private final LiveData<List<Pass>> passesLiveData;
+    private final PassDao passDao;
+    
+    private Wallet(Application application) {
+        
+        Log.d(TAG, "Wallet() called");
+        
+        PassDatabase passDatabase = PassDatabase.getInstance(application);
+        passDao = passDatabase.passDao();
+        passesLiveData = passDao.getAllPasses();
+        
+//        File pkpassDirectory = new File(Environment.getExternalStorageDirectory(), PASS_DIRECTORY + "/pkpass");
+//        if (pkpassDirectory.exists()) {
+//            passFileIndex = pkpassDirectory.list().length;
+//        }
     }
-
-    public static Wallet getInstance() {
+    
+    public static synchronized Wallet getInstance(Application application) {
+        
+        Log.d(TAG, "getInstance() called");
+        
         if (walletInstance == null) {
-            walletInstance = new Wallet();
+            walletInstance = new Wallet(application);
         }
-
+        
         return walletInstance;
     }
-
+    
     public LiveData<List<Pass>> getPasses() {
-        loadPasses();
-
-        MutableLiveData<List<Pass>> passData = new MutableLiveData<>();
-        passData.setValue(passes);
-        return passData;
+        
+        Log.d(TAG, "getPasses() called");
+        
+        return passesLiveData;
     }
-
-    private void loadPasses() { //Get from database/room/api/filestorage/whatever
-
-        Pass pass1 = new GenericPass();
-        pass1.setLogoText("Hello World");
-        List<PassBarcode> barcodes = new ArrayList<>();
-        barcodes.add(new PassBarcode("Hello World", "Hello World", BarcodeFormat.QR_CODE, CharacterSetECI.ISO8859_1));
-        pass1.setBarcodes(barcodes);
-
-        passes.add(pass1);
-
-
-//        loadPass(R.raw.pass1, R.raw.logo1, R.raw.thumbnail1, 0);
-//        loadPass(R.raw.pass2, R.raw.logo2, 0, R.raw.strip2);
-//        loadPass(R.raw.pass3, R.raw.logo3, 0, R.raw.strip3);
-//        loadPass(R.raw.pass4, R.raw.logo4, 0, 0);
-//        loadPass(R.raw.pass5, R.raw.logo5, R.raw.thumbnail5, 0);
-
+    
+    public void addPass(InputStream inputStream) {  //TODO: cleanup
+        
+        
+        File pkpassFileCopy = PassFileUtils.getNextPkPassFile();
+        try {
+            FileUtils.copyInputStreamToFile(inputStream, pkpassFileCopy);
+        } catch (IOException e) {
+            Log.e(TAG, "addPass: copy of pkpass file could not be created", e);
+            return;
+        }
+        
+        File unzippedFileOutputDirectory = PassFileUtils.getNextUnzippedPassDirectory();
+        PassFileLoader.unzipPassFile(pkpassFileCopy, unzippedFileOutputDirectory);
+        
+        
+        File jsonFile = PassFileUtils.getJsonFileFromPassDirectory(unzippedFileOutputDirectory);
+        String passJsonString = PassFileLoader.loadPassJSON(jsonFile);
+        passJsonString = passJsonString.replaceAll("[^ -~]", "");
+        
+        File passStringsFile = PassFileUtils.getStringsFileFromPassDirectory(unzippedFileOutputDirectory);
+        JSONObject stringsJson = null;
+        if (passStringsFile.exists()) {
+            String passStringsString = "";
+            
+            passStringsString = PassFileLoader.loadPassJSON(passStringsFile);
+            
+            passStringsString = StringUtils
+                    .removeEnd(passStringsString.replaceAll("=", ":").replaceAll(";", ","), ",");
+            passStringsString = "{ " + passStringsString + " }";
+            passStringsString = passStringsString.replaceAll("[^ -~]", "");
+            try {
+                stringsJson = new JSONObject(passStringsString);
+            } catch (JSONException e) {
+                Log.e(TAG, "addPass: something wrong with strings json", e);
+            }
+        }
+        
+        try {
+            JSONObject passJson = new JSONObject(passJsonString);
+            
+            PassType passType = PassJSONParser.parsePassType(passJson);
+            
+            if (passType != null) {
+                Pass pass = new PassModel(passType);
+                
+                PassJSONParser.parse(passJson, pass, stringsJson);
+                
+                PassFileLoader.loadPassImagePaths(pass, unzippedFileOutputDirectory);
+                
+                insert(pass);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
-
-//    private void loadPass(int fileID, int logoID, int thumbnailID, int stripID) { //TODO: Split into file reader and pass factory, and just make better
-//        InputStream inputStream = getResources().openRawResource(fileID);
-//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
-//
-//        String line;
-//        StringBuilder jsonString = new StringBuilder();
-//
-//        try {
-//
-//            while ((line = bufferedReader.readLine()) != null) {
-//                jsonString.append(line);
-//            }
-//        }   catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        try {
-//            JSONObject jsonObject = new JSONObject(jsonString.toString());
-//            Pass pass = null;
-//
-//            if (jsonObject.optJSONObject("boardingPass") != null) {
-//                pass = new BoardingCardPass();
-//            }
-//            else if (jsonObject.optJSONObject("coupon") != null) {
-//                pass = new CouponPass();
-//            }
-//            else if (jsonObject.optJSONObject("eventTicket") != null) {
-//                pass = new EventTicketPass();
-//            }
-//            else if (jsonObject.optJSONObject("generic") != null) {
-//                pass = new GenericPass();
-//            }
-//            else if (jsonObject.optJSONObject("storeCard") != null) {
-//                pass = new StoreCardPass();
-//            }
-//
-//            if (pass != null) {
-//                PassJSONParser.parse(jsonObject, pass);
-//                Bitmap logoBitmap = BitmapFactory.decodeStream(getResources().openRawResource(logoID));
-//                pass.setLogo(logoBitmap);
-//                if (thumbnailID != 0) {
-//                    Bitmap thumbnailBitmap = BitmapFactory.decodeStream(getResources().openRawResource(thumbnailID));
-//                    pass.setThumbnail(thumbnailBitmap);
-//                }
-//                if (stripID != 0) {
-//                    Bitmap stripBitmap = BitmapFactory.decodeStream(getResources().openRawResource(stripID));
-//                    pass.setStrip(stripBitmap);
-//                }
-//                passes.add(pass);
-//            }
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-
-//    private Map<String, List<Pass>> walletMap;
-//
-//    public Wallet() {
-//        walletMap = new HashMap<>();
-//    }
-//
-//    public void addCategory(String name) {
-//        walletMap.put(name, new ArrayList<Pass>());
-//    }
-//
-//    public List<Pass> getPassesFromCategory(String name) {
-//        if (name.equals("")) {
-//            return walletMap.get("default");
-//        }
-//        return walletMap.get(name);
-//    }
-//
-//    public void addPassToCategory(String categoryName, Pass pass) {
-//        walletMap.get(categoryName).add(pass);
-//    }
+    
+    public void addPass(Pass pass) {
+        insert(pass);
+    }
+    
+    public void deletePass(int passId) {
+    
+        Log.d(TAG, "deletePass() called with: passId = [" + passId + "]");
+        deleteById(passId);
+    }
+    
+    private void insert(Pass pass) {
+        
+        AsyncTask.execute(() -> passDao.insert(pass));
+    }
+    
+    private void update(Pass pass) {
+        
+        AsyncTask.execute(() -> passDao.update(pass));
+    }
+    
+    private void delete(Pass pass) {
+        
+        AsyncTask.execute(() -> passDao.delete(pass));
+    }
+    
+    private void deleteById(int passId) {
+    
+        Log.d(TAG, "deleteById() called with: passId = [" + passId + "]");
+        AsyncTask.execute(() -> passDao.delete(passId));
+    }
+    
+    //    private Map<String, List<Pass>> walletMap;
+    //
+    //    public Wallet() {
+    //        walletMap = new HashMap<>();
+    //    }
+    //
+    //    public void addCategory(String name) {
+    //        walletMap.put(name, new ArrayList<Pass>());
+    //    }
+    //
+    //    public List<Pass> getPassesFromCategory(String name) {
+    //        if (name.equals("")) {
+    //            return walletMap.get("default");
+    //        }
+    //        return walletMap.get(name);
+    //    }
+    //
+    //    public void addPassToCategory(String categoryName, Pass pass) {
+    //        walletMap.get(categoryName).add(pass);
+    //    }
 }

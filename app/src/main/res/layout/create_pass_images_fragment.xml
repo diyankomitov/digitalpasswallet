@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.diyankomitov.digitalpasswallet.models.pass.components.PassType" />
+
+        <variable
+            name="formViewModel"
+            type="com.diyankomitov.digitalpasswallet.viewmodel.FormViewModel" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/imagesScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/imagesConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".views.form.components.CreatePassImagesFragment">
+
+            <TextView
+                android:id="@+id/imagesLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="Images (Tap on image to change)"
+                app:layout_constraintBottom_toTopOf="@+id/pass_logo_image_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/pass_logo_image_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="Logo"
+                app:layout_constraintBottom_toTopOf="@+id/pass_logo_image_input"
+                app:layout_constraintEnd_toStartOf="@+id/pass_logo_image_clear_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imagesLabel" />
+
+            <ImageView
+                android:id="@+id/pass_logo_image_clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> formViewModel.clearLogoImage()}"
+                android:src="@drawable/ic_clear"
+                android:tint="@color/colorLabelOnLightBackground"
+                app:layout_constraintBottom_toBottomOf="@+id/pass_logo_image_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pass_logo_image_label"
+                app:layout_constraintTop_toTopOf="@+id/pass_logo_image_label" />
+
+            <ImageView
+                android:id="@+id/pass_logo_image_input"
+                android:layout_width="@dimen/logoMaxWidth"
+                android:layout_height="@dimen/logoHeight"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorLabel"
+                android:onClick="launchImagePicker"
+                android:src="@{formViewModel.logoImage}"
+                app:layout_constraintBottom_toTopOf="@+id/pass_strip_image_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_logo_image_label"
+                app:placeholder="@{@drawable/ic_image}" />
+
+            <TextView
+                android:id="@+id/pass_strip_image_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="Strip"
+                android:visibility="@{formViewModel.passType == PassType.EVENT_TICKET || formViewModel.passType == PassType.STORE_CARD || formViewModel.passType == PassType.COUPON ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@+id/pass_strip_image_input"
+                app:layout_constraintEnd_toStartOf="@+id/pass_strip_image_clear_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_logo_image_input" />
+
+            <ImageView
+                android:id="@+id/pass_strip_image_clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> formViewModel.clearStripImage()}"
+                android:src="@drawable/ic_clear"
+                android:tint="@color/colorLabelOnLightBackground"
+                android:visibility="@{formViewModel.passType == PassType.EVENT_TICKET || formViewModel.passType == PassType.STORE_CARD || formViewModel.passType == PassType.COUPON ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/pass_strip_image_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pass_strip_image_label"
+                app:layout_constraintTop_toTopOf="@+id/pass_strip_image_label" />
+
+            <ImageView
+                android:id="@+id/pass_strip_image_input"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/stripTallHeight"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorLabel"
+                android:onClick="launchImagePicker"
+                android:src="@{formViewModel.stripImage}"
+                android:visibility="@{formViewModel.passType == PassType.EVENT_TICKET || formViewModel.passType == PassType.STORE_CARD || formViewModel.passType == PassType.COUPON ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@+id/pass_thumbnail_image_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_strip_image_label"
+                app:placeholder="@{@drawable/ic_image}"
+                tools:layout_height="@dimen/stripTallHeight" />
+
+            <TextView
+                android:id="@+id/pass_thumbnail_image_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="Thumbnail"
+                android:visibility="@{formViewModel.passType == PassType.EVENT_TICKET || formViewModel.passType == PassType.GENERIC ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@+id/pass_thumbnail_image_input"
+                app:layout_constraintEnd_toStartOf="@+id/pass_thumbnail_image_clear_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_strip_image_input" />
+
+            <ImageView
+                android:id="@+id/pass_thumbnail_image_clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> formViewModel.clearThumbnailImage()}"
+                android:src="@drawable/ic_clear"
+                android:tint="@color/colorLabelOnLightBackground"
+                android:visibility="@{formViewModel.passType == PassType.EVENT_TICKET || formViewModel.passType == PassType.GENERIC ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/pass_thumbnail_image_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pass_thumbnail_image_label"
+                app:layout_constraintTop_toTopOf="@+id/pass_thumbnail_image_label" />
+
+            <ImageView
+                android:id="@+id/pass_thumbnail_image_input"
+                android:layout_width="@dimen/thumbnailSize"
+                android:layout_height="@dimen/thumbnailSize"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorLabel"
+                android:onClick="launchImagePicker"
+                android:src="@{formViewModel.thumbnailImage}"
+                android:visibility="@{formViewModel.passType == PassType.EVENT_TICKET || formViewModel.passType == PassType.GENERIC ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@+id/pass_icon_image_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_thumbnail_image_label"
+                app:placeholder="@{@drawable/ic_image}" />
+
+            <TextView
+                android:id="@+id/pass_icon_image_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="Icon"
+                app:layout_constraintBottom_toTopOf="@+id/pass_icon_image_input"
+                app:layout_constraintEnd_toStartOf="@+id/pass_icon_image_clear_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_thumbnail_image_input" />
+
+            <ImageView
+                android:id="@+id/pass_icon_image_clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> formViewModel.clearIconImage()}"
+                android:src="@drawable/ic_clear"
+                android:tint="@color/colorLabelOnLightBackground"
+                app:layout_constraintBottom_toBottomOf="@+id/pass_icon_image_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pass_icon_image_label"
+                app:layout_constraintTop_toTopOf="@+id/pass_icon_image_label" />
+
+            <ImageView
+                android:id="@+id/pass_icon_image_input"
+                android:layout_width="@dimen/iconSize"
+                android:layout_height="@dimen/iconSize"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorLabel"
+                android:onClick="launchImagePicker"
+                android:src="@{formViewModel.iconImage}"
+                app:layout_constraintBottom_toTopOf="@+id/pass_footer_image_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_icon_image_label"
+                app:placeholder="@{@drawable/ic_image}" />
+
+            <TextView
+                android:id="@+id/pass_footer_image_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="Footer"
+                android:visibility="@{formViewModel.passType == PassType.BOARDING_PASS ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@+id/pass_footer_image_input"
+                app:layout_constraintEnd_toStartOf="@+id/pass_footer_image_clear_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_icon_image_input" />
+
+            <ImageView
+                android:id="@+id/pass_footer_image_clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> formViewModel.clearFooterImage()}"
+                android:src="@drawable/ic_clear"
+                android:tint="@color/colorLabelOnLightBackground"
+                android:visibility="@{formViewModel.passType == PassType.BOARDING_PASS ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/pass_footer_image_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pass_footer_image_label"
+                app:layout_constraintTop_toTopOf="@+id/pass_footer_image_label" />
+
+            <ImageView
+                android:id="@+id/pass_footer_image_input"
+                android:layout_width="@dimen/footerMaxWidth"
+                android:layout_height="@dimen/footerHeight"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorLabel"
+                android:onClick="launchImagePicker"
+                android:src="@{formViewModel.footerImage}"
+                android:visibility="@{formViewModel.passType == PassType.BOARDING_PASS ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@+id/pass_background_image_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_footer_image_label"
+                app:placeholder="@{@drawable/ic_image}" />
+
+            <TextView
+                android:id="@+id/pass_background_image_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="Background"
+                android:visibility="@{formViewModel.passType == PassType.EVENT_TICKET ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@+id/pass_background_image_input"
+                app:layout_constraintEnd_toStartOf="@+id/pass_background_image_clear_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_footer_image_input" />
+
+            <ImageView
+                android:id="@+id/pass_background_image_clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> formViewModel.clearBackgroundImage()}"
+                android:src="@drawable/ic_clear"
+                android:tint="@color/colorLabelOnLightBackground"
+                android:visibility="@{formViewModel.passType == PassType.EVENT_TICKET ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/pass_background_image_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pass_background_image_label"
+                app:layout_constraintTop_toTopOf="@+id/pass_background_image_label" />
+
+            <ImageView
+                android:id="@+id/pass_background_image_input"
+                android:layout_width="@dimen/backgroundWidth"
+                android:layout_height="@dimen/backgroundHeight"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorLabel"
+                android:onClick="launchImagePicker"
+                android:src="@{formViewModel.backgroundImage}"
+                android:visibility="@{formViewModel.passType == PassType.EVENT_TICKET ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_background_image_label"
+                app:placeholder="@{@drawable/ic_image}" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

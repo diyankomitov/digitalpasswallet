@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="PassSecondaryAndAuxiliaryFieldsDataBinding">
+
+        <variable
+            name="passViewModel"
+            type="com.diyankomitov.digitalpasswallet.viewmodel.pass.PassViewModel" />
+    </data>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/auxiliary_and_secondary_fields"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:alignContent="flex_start"
+        app:alignItems="flex_start"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start"
+        app:showDivider="middle"
+        app:dividerDrawable="@drawable/flexbox_divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:showIn="@layout/pass_item_event_ticket">
+
+        <include
+            layout="@layout/pass_component_secondary_fields"
+            bind:passViewModel="@{passViewModel}" />
+
+        <include
+            layout="@layout/pass_component_auxiliary_fields"
+            bind:passViewModel="@{passViewModel}" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+</layout>

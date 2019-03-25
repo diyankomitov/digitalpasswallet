@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Surrounding rectangle that will scale and is transparent to allow for correct masking -->
+    <item android:gravity="top|center">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <!-- Top Cutouts: doesn't scale due to defined drawable and gravity -->
+
+    <!-- Left segments start here -->
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="520dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="494dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="468dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="442dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="416dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="390dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="364dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="338dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="312dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="286dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="260dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="234dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="208dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="182dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="156dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="130dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="104dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="78dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="52dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:right="26dp">
+
+    </item>
+
+    <!-- Center segment here -->
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal">
+
+    </item>
+
+    <!-- Right segments start here -->
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="26dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="52dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="78dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="104dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="130dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="156dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="182dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="208dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="234dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="260dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="286dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="312dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="338dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="364dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="390dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="416dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="442dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="468dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="494dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_top"
+        android:gravity="top|center_horizontal"
+        android:left="520dp">
+
+    </item>
+
+    <!-- Bottom Cutouts-->
+    
+
+    <!-- Left segments start here -->
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="520dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="494dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="468dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="442dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="416dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="390dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="364dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="338dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="312dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="286dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="260dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="234dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="208dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="182dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="156dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="130dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="104dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="78dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="52dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:right="26dp">
+
+    </item>
+
+    <!-- Center segment here -->
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal">
+
+    </item>
+
+    <!-- Right segments start here -->
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="26dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="52dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="78dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="104dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="130dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="156dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="182dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="208dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="234dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="260dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="286dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="312dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="338dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="364dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="390dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="416dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="442dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="468dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="494dp">
+
+    </item>
+
+    <item
+        android:drawable="@drawable/mask_coupon_cutout_segment_bottom"
+        android:gravity="bottom|center_horizontal"
+        android:left="520dp">
+
+    </item>
+
+</layer-list>

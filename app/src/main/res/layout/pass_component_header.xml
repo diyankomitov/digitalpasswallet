@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="PassHeaderDataBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="passViewModel"
+            type="com.diyankomitov.digitalpasswallet.viewmodel.pass.PassViewModel" />
+    </data>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/logoHeight"
+        android:orientation="horizontal"
+        app:flexDirection="row"
+        tools:showIn="@layout/pass_item_event_ticket">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/pass_logo_cd"
+            android:maxWidth="@dimen/logoMaxWidth"
+            android:scaleType="fitCenter"
+            android:src="@{passViewModel.logoPath}"
+            app:layout_flexGrow="0"
+            app:layout_flexShrink="0" />
+
+        <TextView
+            android:id="@+id/logo_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@{passViewModel.logoText}"
+            android:textColor="@{safeUnbox(passViewModel.foregroundColor)}"
+            android:visibility="@{passViewModel.logoText.length() == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_flexGrow="0"
+            app:layout_flexShrink="0"
+            android:textSize="@dimen/headerFieldValueTextSize"
+            app:minTextSize="1sp"
+            app:sizeToFit="true" />
+
+        <com.diyankomitov.digitalpasswallet.views.pass.components.PassFieldLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:gravity="end|center_vertical"
+            android:orientation="vertical"
+            app:layout_flexGrow="1"
+            app:layout_flexShrink="1">
+
+            <TextView
+                android:id="@+id/header_label_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="end|center_vertical"
+                android:singleLine="true"
+                android:text="@{passViewModel.headerLabel3}"
+                android:textColor="@{safeUnbox(passViewModel.labelColor)}"
+                android:textSize="@dimen/fieldLabelTextSize"
+                android:textStyle="bold" />
+
+            <com.diyankomitov.digitalpasswallet.views.pass.components.PassFieldValueTextView
+                android:id="@+id/header_value_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end|center_vertical"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:tag="header_value_3"
+                android:text="@{passViewModel.headerValue3}"
+                android:textColor="@{safeUnbox(passViewModel.foregroundColor)}"
+                android:textSize="@dimen/headerFieldValueTextSize"
+                app:minTextSize="@dimen/fieldLabelTextSize"
+                app:sizeToFit="true" />
+
+        </com.diyankomitov.digitalpasswallet.views.pass.components.PassFieldLinearLayout>
+
+        <com.diyankomitov.digitalpasswallet.views.pass.components.PassFieldLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:gravity="end|center_vertical"
+            android:orientation="vertical"
+            app:layout_flexGrow="1"
+            app:layout_flexShrink="1">
+
+            <TextView
+                android:id="@+id/header_label_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="end|center_vertical"
+                android:singleLine="true"
+                android:text="@{passViewModel.headerLabel2}"
+                android:textColor="@{safeUnbox(passViewModel.labelColor)}"
+                android:textSize="@dimen/fieldLabelTextSize"
+                android:textStyle="bold" />
+
+            <com.diyankomitov.digitalpasswallet.views.pass.components.PassFieldValueTextView
+                android:id="@+id/header_value_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end|center_vertical"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:tag="header_value_2"
+                android:text="@{passViewModel.headerValue2}"
+                android:textColor="@{safeUnbox(passViewModel.foregroundColor)}"
+                android:textSize="@dimen/headerFieldValueTextSize"
+                app:minTextSize="@dimen/fieldLabelTextSize"
+                app:sizeToFit="true" />
+
+        </com.diyankomitov.digitalpasswallet.views.pass.components.PassFieldLinearLayout>
+
+        <com.diyankomitov.digitalpasswallet.views.pass.components.PassFieldLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:orientation="vertical"
+            app:layout_flexGrow="1"
+            app:layout_flexShrink="1">
+
+            <TextView
+                android:id="@+id/header_label_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="end|center_vertical"
+                android:singleLine="true"
+                android:text="@{passViewModel.headerLabel1}"
+                android:textColor="@{safeUnbox(passViewModel.labelColor)}"
+                android:textSize="@dimen/fieldLabelTextSize"
+                android:textStyle="bold" />
+
+            <com.diyankomitov.digitalpasswallet.views.pass.components.PassFieldValueTextView
+                android:id="@+id/header_value_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end|center_vertical"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:tag="header_value_1"
+                android:text="@{passViewModel.headerValue1}"
+                android:textColor="@{safeUnbox(passViewModel.foregroundColor)}"
+                android:textSize="@dimen/headerFieldValueTextSize"
+                app:minTextSize="@dimen/fieldLabelTextSize"
+                app:sizeToFit="true" />
+
+        </com.diyankomitov.digitalpasswallet.views.pass.components.PassFieldLinearLayout>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+</layout>

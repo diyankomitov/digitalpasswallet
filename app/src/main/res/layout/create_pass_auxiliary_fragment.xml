@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.diyankomitov.digitalpasswallet.models.pass.components.PassType" />
+
+        <variable
+            name="formViewModel"
+            type="com.diyankomitov.digitalpasswallet.viewmodel.FormViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout_auxiliary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".views.form.components.CreatePassAuxiliaryFragment">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_auxiliary_1_label_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/pass_auxiliary_2_label_input"
+                app:layout_constraintEnd_toStartOf="@+id/pass_auxiliary_1_value_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside"
+                tools:layout_conversion_absoluteHeight="56dp"
+                tools:layout_conversion_absoluteWidth="174dp">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:id="@+id/pass_auxiliary_1_label_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Auxiliary Label 1"
+                    android:text="@={formViewModel.auxiliaryLabel1}"
+                    tools:layout_conversion_absoluteHeight="45dp"
+                    tools:layout_conversion_absoluteWidth="174dp"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="27dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_auxiliary_1_value_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/pass_auxiliary_2_value_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pass_auxiliary_1_label_input"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside"
+                tools:layout_conversion_absoluteHeight="56dp"
+                tools:layout_conversion_absoluteWidth="190dp">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:id="@+id/pass_auxiliary_1_value_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Auxiliary Value 1"
+                    android:text="@={formViewModel.auxiliaryValue1}"
+                    tools:layout_conversion_absoluteHeight="45dp"
+                    tools:layout_conversion_absoluteWidth="190dp"
+                    tools:layout_editor_absoluteX="206dp"
+                    tools:layout_editor_absoluteY="27dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_auxiliary_2_label_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/pass_auxiliary_3_label_input"
+                app:layout_constraintEnd_toStartOf="@+id/pass_auxiliary_2_value_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_auxiliary_1_label_input"
+                tools:layout_conversion_absoluteHeight="56dp"
+                tools:layout_conversion_absoluteWidth="174dp">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:id="@+id/pass_auxiliary_2_label_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Auxiliary Label 2"
+                    android:text="@={formViewModel.auxiliaryLabel2}"
+                    tools:layout_conversion_absoluteHeight="45dp"
+                    tools:layout_conversion_absoluteWidth="174dp"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="99dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_auxiliary_2_value_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/pass_auxiliary_3_value_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pass_auxiliary_2_label_input"
+                app:layout_constraintTop_toBottomOf="@+id/pass_auxiliary_1_value_input"
+                tools:layout_conversion_absoluteHeight="56dp"
+                tools:layout_conversion_absoluteWidth="190dp">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:id="@+id/pass_auxiliary_2_value_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Auxiliary Value 2"
+                    android:text="@={formViewModel.auxiliaryValue2}"
+                    tools:layout_conversion_absoluteHeight="45dp"
+                    tools:layout_conversion_absoluteWidth="190dp"
+                    tools:layout_editor_absoluteX="206dp"
+                    tools:layout_editor_absoluteY="99dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_auxiliary_3_label_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/pass_auxiliary_4_label_input"
+                app:layout_constraintEnd_toStartOf="@+id/pass_auxiliary_3_value_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_auxiliary_2_label_input"
+                tools:layout_conversion_absoluteHeight="56dp"
+                tools:layout_conversion_absoluteWidth="174dp">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:id="@+id/pass_auxiliary_3_label_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Auxiliary Label 3"
+                    android:text="@={formViewModel.auxiliaryLabel3}"
+                    tools:layout_conversion_absoluteHeight="45dp"
+                    tools:layout_conversion_absoluteWidth="174dp"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="172dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_auxiliary_3_value_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/pass_auxiliary_4_value_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pass_auxiliary_3_label_input"
+                app:layout_constraintTop_toBottomOf="@+id/pass_auxiliary_2_value_input"
+                tools:layout_conversion_absoluteHeight="56dp"
+                tools:layout_conversion_absoluteWidth="190dp">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:id="@+id/pass_auxiliary_3_value_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Auxiliary Value 3"
+                    android:text="@={formViewModel.auxiliaryValue3}"
+                    tools:layout_conversion_absoluteHeight="45dp"
+                    tools:layout_conversion_absoluteWidth="190dp"
+                    tools:layout_editor_absoluteX="206dp"
+                    tools:layout_editor_absoluteY="172dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_auxiliary_4_label_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/pass_auxiliary_5_label_input"
+                app:layout_constraintEnd_toStartOf="@+id/pass_auxiliary_4_value_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_auxiliary_3_label_input"
+                tools:layout_conversion_absoluteHeight="56dp"
+                tools:layout_conversion_absoluteWidth="174dp">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:id="@+id/pass_auxiliary_4_label_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Auxiliary Label 4"
+                    android:text="@={formViewModel.auxiliaryLabel4}"
+                    tools:layout_conversion_absoluteHeight="45dp"
+                    tools:layout_conversion_absoluteWidth="174dp"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="244dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_auxiliary_4_value_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/pass_auxiliary_5_value_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pass_auxiliary_4_label_input"
+                app:layout_constraintTop_toBottomOf="@+id/pass_auxiliary_3_value_input"
+                tools:layout_conversion_absoluteHeight="56dp"
+                tools:layout_conversion_absoluteWidth="190dp">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:id="@+id/pass_auxiliary_4_value_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Auxiliary Value 4"
+                    android:text="@={formViewModel.auxiliaryValue4}"
+                    tools:layout_conversion_absoluteHeight="45dp"
+                    tools:layout_conversion_absoluteWidth="190dp"
+                    tools:layout_editor_absoluteX="206dp"
+                    tools:layout_editor_absoluteY="244dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_auxiliary_5_label_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/pass_auxiliary_5_value_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_auxiliary_4_label_input"
+                tools:layout_conversion_absoluteHeight="56dp"
+                tools:layout_conversion_absoluteWidth="174dp">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:id="@+id/pass_auxiliary_5_label_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Auxiliary Label 5"
+                    android:text="@={formViewModel.auxiliaryLabel5}"
+                    tools:layout_conversion_absoluteHeight="45dp"
+                    tools:layout_conversion_absoluteWidth="174dp"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="316dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_auxiliary_5_value_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pass_auxiliary_5_label_input"
+                app:layout_constraintTop_toBottomOf="@+id/pass_auxiliary_4_value_input"
+                tools:layout_conversion_absoluteHeight="56dp"
+                tools:layout_conversion_absoluteWidth="190dp">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:id="@+id/pass_auxiliary_5_value_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Auxiliary Value 5"
+                    android:text="@={formViewModel.auxiliaryValue5}"
+                    tools:layout_conversion_absoluteHeight="45dp"
+                    tools:layout_conversion_absoluteWidth="190dp"
+                    tools:layout_editor_absoluteX="206dp"
+                    tools:layout_editor_absoluteY="316dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{formViewModel.passType == PassType.BOARDING_PASS ? View.VISIBLE : View.GONE}"
+                app:constraint_referenced_ids="pass_auxiliary_5_label_input, pass_auxiliary_5_value_input"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

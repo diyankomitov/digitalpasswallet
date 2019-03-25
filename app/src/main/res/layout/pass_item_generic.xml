@@ -1,482 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data class="GenericDataBinding">
 
         <variable
             name="passViewModel"
-            type="com.diyankomitov.digitalpasswallet.viewmodel.PassViewModel" />
+            type="com.diyankomitov.digitalpasswallet.viewmodel.pass.PassViewModel" />
+
+        <variable
+            name="passViewHandler"
+            type="com.diyankomitov.digitalpasswallet.views.pass.util.PassViewHandler" />
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        android:padding="10dp">
 
-        <androidx.cardview.widget.CardView
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:indeterminateTintMode="src_in" />
+
+        <RelativeLayout
+            android:id="@+id/card_back"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            app:backgroundBitmap="@{passViewModel.backgroundImage}"
-            app:backgroundColor="@{passViewModel.backgroundColor}"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="1dp"
-            app:cardMaxElevation="2dp">
+            android:clickable="false"
+            android:visibility="gone">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <include
+                android:id="@+id/pass_item_back"
+                layout="@layout/pass_component_back"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:weightSum="3">
-                <!--TODO: remove src and replace with real src from java-->
-                <ImageView
-                    android:id="@+id/logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/pass_logo_cd"
-                    android:maxHeight="50dp"
-                    android:maxWidth="160dp"
-                    app:imageBitmap="@{passViewModel.logo}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                app:cardCornerRadius="20dp"
+                bind:passViewHandler="@{passViewHandler}"
+                bind:passViewModel="@{passViewModel}" />
 
-                <TextView
-                    android:id="@+id/logo_text"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="16dp"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:paddingEnd="5dp"
-                    android:paddingStart="5dp"
-                    android:text="@{passViewModel.logoText}"
-                    app:textColor="@{passViewModel.foregroundColor}"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/logo"
-                    app:layout_constraintEnd_toStartOf="@+id/header_label_3"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/logo"
-                    app:layout_constraintTop_toTopOf="@+id/logo"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:layout_constraintWidth_default="wrap" />
+        </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/card_front"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:visibility="gone">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/header_label_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="end|center_vertical"
-                    android:maxLines="1"
-                    android:padding="1dp"
-                    android:text="@{passViewModel.headerLabel1}"
-                    app:textColor="@{passViewModel.labelColor}"
-                    app:autoSizeMinTextSize="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintBottom_toBottomOf="@+id/logo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/logo"
-                    app:layout_constraintVertical_bias="0.0" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                app:cardBackgroundColor="@{safeUnbox(passViewModel.backgroundColor)}"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="1dp"
+                app:cardMaxElevation="2dp">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/header_value_1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="end|center_vertical"
-                    android:maxLines="1"
-                    android:padding="1dp"
-                    android:text="@{passViewModel.headerValue1}"
-                    app:textColor="@{passViewModel.foregroundColor}"
-                    app:autoSizeMinTextSize="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="@+id/header_label_1"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/header_label_1"
-                    app:layout_constraintTop_toBottomOf="@+id/header_label_1" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/header_label_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="end|center_vertical"
-                    android:maxLines="1"
-                    android:padding="1dp"
-                    android:text="@{passViewModel.headerLabel2}"
-                    app:textColor="@{passViewModel.labelColor}"
-                    app:autoSizeMinTextSize="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintBottom_toBottomOf="@+id/header_label_1"
-                    app:layout_constraintEnd_toStartOf="@+id/header_label_1"
-                    app:layout_constraintTop_toTopOf="@+id/header_label_1" />
+                    <include
+                        android:id="@+id/pass_item_header"
+                        layout="@layout/pass_component_header"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        bind:passViewModel="@{passViewModel}" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/header_value_2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="end|center_vertical"
-                    android:maxLines="1"
-                    android:padding="1dp"
-                    android:text="@{passViewModel.headerValue2}"
-                    app:textColor="@{passViewModel.foregroundColor}"
-                    app:autoSizeMinTextSize="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="@+id/header_label_2"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/header_label_2"
-                    app:layout_constraintTop_toBottomOf="@+id/header_label_2" />
+                    <ImageView
+                        android:id="@+id/thumbnail"
+                        android:layout_width="@dimen/thumbnailSize"
+                        android:layout_height="@dimen/thumbnailSize"
+                        android:layout_marginEnd="16dp"
+                        android:contentDescription="@string/pass_thumbnail_cd"
+                        android:scaleType="centerCrop"
+                        android:src="@{passViewModel.thumbnailPath}"
+                        app:layout_constraintBottom_toBottomOf="@+id/primary_value_1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/primary_label_1" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/header_label_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="end|center_vertical"
-                    android:maxLines="1"
-                    android:padding="1dp"
-                    android:text="@{passViewModel.headerLabel3}"
-                    app:textColor="@{passViewModel.labelColor}"
-                    app:autoSizeMinTextSize="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintBottom_toBottomOf="@+id/header_label_2"
-                    app:layout_constraintEnd_toStartOf="@+id/header_label_2"
-                    app:layout_constraintTop_toTopOf="@+id/header_label_2"
-                    app:layout_constraintVertical_bias="0.25" />
+                    <TextView
+                        android:id="@+id/primary_label_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@{passViewModel.primaryLabel1}"
+                        android:textColor="@{safeUnbox(passViewModel.labelColor)}"
+                        app:layout_constraintEnd_toStartOf="@+id/thumbnail"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/pass_item_header" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/header_value_3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="end|center_vertical"
-                    android:maxLines="1"
-                    android:padding="1dp"
-                    android:text="@{passViewModel.headerValue3}"
-                    app:textColor="@{passViewModel.foregroundColor}"
-                    app:autoSizeMinTextSize="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="@+id/header_label_3"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/header_label_3"
-                    app:layout_constraintTop_toBottomOf="@+id/header_label_3" />
+                    <TextView
+                        android:id="@+id/primary_value_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:maxLines="3"
+                        android:text="@{passViewModel.primaryValue1}"
+                        android:textColor="@{safeUnbox(passViewModel.foregroundColor)}"
+                        android:textSize="@dimen/headerFieldValueTextSize"
+                        app:layout_constraintEnd_toStartOf="@+id/thumbnail"
+                        app:layout_constraintStart_toStartOf="@+id/primary_label_1"
+                        app:layout_constraintTop_toBottomOf="@+id/primary_label_1"
+                        app:minTextSize="@dimen/fieldLabelTextSize"
+                        app:sizeToFit="true" />
 
-                <ImageView
-                    android:id="@+id/thumbnail"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_marginEnd="16dp"
-                    android:contentDescription="@string/pass_thumbnail_cd"
-                    app:imageBitmap="@{passViewModel.thumbnail}"
-                    app:layout_constraintBottom_toBottomOf="@+id/primary_value"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/primary_label" />
+                    <include
+                        layout="@layout/pass_component_secondary_and_auxiliary_fields"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="8dp"
+                        app:alignContent="flex_start"
+                        app:alignItems="flex_start"
+                        app:dividerDrawable="@drawable/flexbox_divider"
+                        app:flexWrap="wrap"
+                        app:justifyContent="flex_start"
+                        app:layout_constraintBottom_toTopOf="@+id/barcode_card"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/primary_value_1"
+                        app:showDivider="middle"
+                        bind:passViewModel="@{passViewModel}" />
 
-                <TextView
-                    android:id="@+id/primary_label"
-                    android:layout_width="0dp"
-                    android:layout_height="25dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:maxLines="1"
-                    android:text="@{passViewModel.primaryLabel1}"
-                    app:textColor="@{passViewModel.labelColor}"
-                    app:autoSizeMinTextSize="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toStartOf="@+id/thumbnail"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/logo_text" />
-
-                <TextView
-                    android:id="@+id/primary_value"
-                    android:layout_width="0dp"
-                    android:layout_height="55dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="10dp"
-                    android:maxLines="1"
-                    android:text="@{passViewModel.primaryValue1}"
-                    app:textColor="@{passViewModel.foregroundColor}"
-                    app:autoSizeMinTextSize="1sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toStartOf="@+id/thumbnail"
-                    app:layout_constraintStart_toStartOf="@+id/primary_label"
-                    app:layout_constraintTop_toBottomOf="@+id/primary_label" />
-
-
-                <com.google.android.flexbox.FlexboxLayout
-                    android:id="@+id/secondary_fields"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    app:alignItems="center"
-                    app:flexWrap="wrap"
-                    app:justifyContent="flex_start"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/primary_value">
-
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/barcode_card"
                         android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:elevation="1dp"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="8dp"
+                        app:cardMaxElevation="2dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.3"
+                        app:layout_constraintStart_toStartOf="parent">
 
-                        <TextView
-                            android:id="@+id/secondary_label_1"
+                        <ImageView
+                            android:id="@+id/barcode"
                             android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryLabel1}"
-                            app:textColor="@{passViewModel.labelColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:contentDescription="@string/pass_barcode_cd"
+                            android:scaleType="centerInside"
+                            android:src="@{passViewModel.barcode}" />
+                    </androidx.cardview.widget.CardView>
 
-                        <TextView
-                            android:id="@+id/secondary_value_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryValue1}"
-                            app:textColor="@{passViewModel.foregroundColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <ImageButton
+                        android:id="@+id/more_info"
                         android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="16dp"
+                        android:paddingEnd="16dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/more_info_cd"
+                        android:onClick="@{passViewHandler::onClickMoreInfo}"
+                        app:color="@{safeUnbox(passViewModel.foregroundColor)}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@drawable/ic_more_info" />
 
-                        <TextView
-                            android:id="@+id/secondary_label_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryLabel2}"
-                            app:textColor="@{passViewModel.labelColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <TextView
-                            android:id="@+id/secondary_value_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryValue2}"
-                            app:textColor="@{passViewModel.foregroundColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/secondary_label_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryLabel3}"
-                            app:textColor="@{passViewModel.labelColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-
-                        <TextView
-                            android:id="@+id/secondary_value_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryValue3}"
-                            app:textColor="@{passViewModel.foregroundColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/secondary_label_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryLabel4}"
-                            app:textColor="@{passViewModel.labelColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-
-                        <TextView
-                            android:id="@+id/secondary_value_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryValue4}"
-                            app:textColor="@{passViewModel.foregroundColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-
-                    </LinearLayout>
-
-
-                </com.google.android.flexbox.FlexboxLayout>
-
-                <com.google.android.flexbox.FlexboxLayout
-                    android:id="@+id/auxiliary_fields"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    app:alignItems="center"
-                    app:flexWrap="wrap"
-                    app:justifyContent="flex_start"
-                    app:layout_constraintBottom_toTopOf="@+id/barcode"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/secondary_fields">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/auxiliary_label_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.auxiliaryLabel1}"
-                            app:textColor="@{passViewModel.labelColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-
-                        <TextView
-                            android:id="@+id/auxiliary_value_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.auxiliaryValue1}"
-                            app:textColor="@{passViewModel.foregroundColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/auxiliary_label_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryLabel2}"
-                            app:textColor="@{passViewModel.labelColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-
-                        <TextView
-                            android:id="@+id/auxiliary_value_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryValue2}"
-                            app:textColor="@{passViewModel.foregroundColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/auxiliary_label_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryLabel3}"
-                            app:textColor="@{passViewModel.labelColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-
-                        <TextView
-                            android:id="@+id/auxiliary_value_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryValue3}"
-                            app:textColor="@{passViewModel.foregroundColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/auxiliary_label_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryLabel4}"
-                            app:textColor="@{passViewModel.labelColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-
-                        <TextView
-                            android:id="@+id/auxiliary_value_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:maxLines="1"
-                            android:text="@{passViewModel.secondaryValue4}"
-                            app:textColor="@{passViewModel.foregroundColor}"
-                            app:autoSizeMinTextSize="1sp"
-                            app:autoSizeTextType="uniform" />
-
-                    </LinearLayout>
-
-                </com.google.android.flexbox.FlexboxLayout>
-
-                <ImageView
-                    android:id="@+id/barcode"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="16dp"
-                    android:contentDescription="@string/pass_barcode_cd"
-                    app:imageBitmap="@{passViewModel.barcode}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="W,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.3"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
+    </FrameLayout>
 </layout>

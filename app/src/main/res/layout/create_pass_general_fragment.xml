@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.google.zxing.BarcodeFormat" />
+
+        <import type="com.diyankomitov.digitalpasswallet.models.pass.components.PassType" />
+
+        <import type="com.diyankomitov.digitalpasswallet.models.pass.components.PassTransitType" />
+
+        <import type="com.diyankomitov.digitalpasswallet.views.form.util.ColorUtils" />
+
+        <variable
+            name="formViewModel"
+            type="com.diyankomitov.digitalpasswallet.viewmodel.FormViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout_general"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".views.form.components.CreatePassGeneralFragment">
+
+            <TextView
+                android:id="@+id/pass_type_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Pass Type"
+                app:layout_constraintBottom_toTopOf="@+id/event_ticket_type_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioButton
+                android:id="@+id/boarding_pass_type_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:checked="@{formViewModel.passType == PassType.BOARDING_PASS ? true : false}"
+                android:maxLines="2"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setPassType(PassType.BOARDING_PASS) : void}"
+                android:text="Boarding Pass"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/event_ticket_type_input"
+                app:layout_constraintEnd_toStartOf="@+id/event_ticket_type_input"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/event_ticket_type_input" />
+
+            <RadioButton
+                android:id="@+id/event_ticket_type_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:checked="@{formViewModel.passType == PassType.EVENT_TICKET ? true : false}"
+                android:maxLines="2"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setPassType(PassType.EVENT_TICKET) : void}"
+                android:text="Event Ticket"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/coupon_type_input"
+                app:layout_constraintEnd_toStartOf="@+id/store_card_type_input"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/boarding_pass_type_input"
+                app:layout_constraintTop_toBottomOf="@+id/pass_type_label" />
+
+            <RadioButton
+                android:id="@+id/store_card_type_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:checked="@{formViewModel.passType == PassType.STORE_CARD ? true : false}"
+                android:maxLines="2"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setPassType(PassType.STORE_CARD) : void}"
+                android:text="Store Card"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/event_ticket_type_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/event_ticket_type_input"
+                app:layout_constraintTop_toTopOf="@+id/event_ticket_type_input" />
+
+            <RadioButton
+                android:id="@+id/generic_type_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:checked="@{formViewModel.passType == PassType.GENERIC ? true : false}"
+                android:maxLines="2"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setPassType(PassType.GENERIC) : void}"
+                android:text="Generic"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/coupon_type_input"
+                app:layout_constraintEnd_toStartOf="@+id/event_ticket_type_input"
+                app:layout_constraintStart_toStartOf="@+id/boarding_pass_type_input"
+                app:layout_constraintTop_toTopOf="@+id/coupon_type_input" />
+
+            <RadioButton
+                android:id="@+id/coupon_type_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:checked="@{formViewModel.passType == PassType.COUPON ? true : false}"
+                android:maxLines="2"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setPassType(PassType.COUPON) : void}"
+                android:text="Coupon"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@id/divider1"
+                app:layout_constraintEnd_toStartOf="@+id/store_card_type_input"
+                app:layout_constraintStart_toStartOf="@+id/event_ticket_type_input"
+                app:layout_constraintTop_toBottomOf="@+id/event_ticket_type_input" />
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/pass_transit_type_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/coupon_type_input" />
+
+            <TextView
+                android:id="@+id/pass_transit_type_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Pass Transit Type"
+                android:visibility="@{formViewModel.passType == PassType.BOARDING_PASS ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@+id/bus_transit_type_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+            <RadioButton
+                android:id="@+id/air_transit_type_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:checked="@{formViewModel.passTransitType == PassTransitType.AIR ? true : false}"
+                android:maxLines="2"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setPassTransitType(PassTransitType.AIR) : void}"
+                android:text="Air"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/bus_transit_type_input"
+                app:layout_constraintEnd_toStartOf="@+id/bus_transit_type_input"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bus_transit_type_input" />
+
+            <RadioButton
+                android:id="@+id/bus_transit_type_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:checked="@{formViewModel.passTransitType == PassTransitType.BUS ? true : false}"
+                android:maxLines="2"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setPassTransitType(PassTransitType.BUS) : void}"
+                android:text="Bus"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/generic_transit_type_input"
+                app:layout_constraintEnd_toStartOf="@+id/train_transit_type_input"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/air_transit_type_input"
+                app:layout_constraintTop_toBottomOf="@id/pass_transit_type_label" />
+
+            <RadioButton
+                android:id="@+id/train_transit_type_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:checked="@{formViewModel.passTransitType == PassTransitType.TRAIN ? true : false}"
+                android:maxLines="2"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setPassTransitType(PassTransitType.TRAIN) : void}"
+                android:text="Train"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/bus_transit_type_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/bus_transit_type_input"
+                app:layout_constraintTop_toTopOf="@+id/bus_transit_type_input" />
+
+            <RadioButton
+                android:id="@+id/boat_transit_type_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:checked="@{formViewModel.passTransitType == PassTransitType.BOAT ? true : false}"
+                android:maxLines="2"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setPassTransitType(PassTransitType.BOAT) : void}"
+                android:text="Boat"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/generic_transit_type_input"
+                app:layout_constraintEnd_toStartOf="@+id/bus_transit_type_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/air_transit_type_input"
+                app:layout_constraintTop_toTopOf="@+id/generic_transit_type_input" />
+
+            <RadioButton
+                android:id="@+id/generic_transit_type_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:checked="@{formViewModel.passTransitType == PassTransitType.GENERIC ? true : false}"
+                android:maxLines="2"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setPassTransitType(PassTransitType.GENERIC) : void}"
+                android:text="Generic"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/divider2"
+                app:layout_constraintEnd_toStartOf="@+id/train_transit_type_input"
+                app:layout_constraintStart_toStartOf="@+id/bus_transit_type_input"
+                app:layout_constraintTop_toBottomOf="@+id/bus_transit_type_input" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="?android:attr/listDivider"
+                android:visibility="@{formViewModel.passType == PassType.BOARDING_PASS ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@+id/pass_barcode_format_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/generic_transit_type_input" />
+
+            <TextView
+                android:id="@+id/pass_barcode_format_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Barcode Format"
+                app:layout_constraintBottom_toTopOf="@+id/qr_barcode_format_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+            <RadioButton
+                android:id="@+id/qr_barcode_format_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:checked="@{formViewModel.barcodeFormat == BarcodeFormat.QR_CODE ? true : false}"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setBarcodeFormat(BarcodeFormat.QR_CODE) : void}"
+                android:text="QR Code"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@id/pdf417_barcode_format_input"
+                app:layout_constraintEnd_toStartOf="@+id/aztec_barcode_format_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pass_barcode_format_label" />
+
+            <RadioButton
+                android:id="@+id/aztec_barcode_format_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:checked="@{formViewModel.barcodeFormat == BarcodeFormat.AZTEC ? true : false}"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setBarcodeFormat(BarcodeFormat.AZTEC) : void}"
+                android:text="Aztec Code"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/qr_barcode_format_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/qr_barcode_format_input"
+                app:layout_constraintTop_toTopOf="@+id/qr_barcode_format_input" />
+
+            <RadioButton
+                android:id="@+id/pdf417_barcode_format_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:checked="@{formViewModel.barcodeFormat == BarcodeFormat.PDF_417 ? true : false}"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setBarcodeFormat(BarcodeFormat.PDF_417) : void}"
+                android:text="PDF417"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/pass_barcode_input"
+                app:layout_constraintEnd_toStartOf="@+id/code128_barcode_format_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/qr_barcode_format_input" />
+
+            <RadioButton
+                android:id="@+id/code128_barcode_format_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:checked="@{formViewModel.barcodeFormat == BarcodeFormat.CODE_128 ? true : false}"
+                android:onCheckedChanged="@{(button, isChecked) -> isChecked ? formViewModel.setBarcodeFormat(BarcodeFormat.CODE_128) : void}"
+                android:text="Code128"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/pdf417_barcode_format_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pdf417_barcode_format_input"
+                app:layout_constraintTop_toTopOf="@+id/pdf417_barcode_format_input" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_barcode_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/divider3"
+                app:layout_constraintEnd_toStartOf="@+id/barcode_image_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pdf417_barcode_format_input">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:id="@+id/pass_barcode_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Barcode Message"
+                    android:text="@={formViewModel.barcodeMessage}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/barcode_image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@android:color/transparent"
+                android:onClick="launchBarcodeScanner"
+                android:src="@drawable/ic_qr_code"
+                android:tint="@color/colorPrimary"
+                android:tintMode="src_in"
+                app:layout_constraintBottom_toBottomOf="@+id/pass_barcode_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pass_barcode_input"
+                app:layout_constraintTop_toTopOf="@id/pass_barcode_input" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/pass_description_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_barcode_input" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_description_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/divider4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider3">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:id="@+id/pass_description_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Pass Description"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:text="@={formViewModel.description}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/pass_primary_1_label_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_description_input" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_primary_1_label_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/pass_primary_2_label_input"
+                app:layout_constraintEnd_toStartOf="@id/pass_primary_1_value_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider4">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:id="@+id/pass_primary_1_label_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Primary Label 1"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:text="@={formViewModel.primaryLabel1}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_primary_1_value_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/pass_primary_1_label_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/pass_primary_1_label_input"
+                app:layout_constraintTop_toBottomOf="@+id/pass_primary_1_label_input"
+                app:layout_constraintTop_toTopOf="@+id/pass_primary_1_label_input">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:id="@+id/pass_primary_1_value_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Primary Value 1"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:text="@={formViewModel.primaryValue1}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_primary_2_label_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/divider5"
+                app:layout_constraintEnd_toStartOf="@id/pass_primary_2_value_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_primary_1_label_input">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:id="@+id/pass_primary_2_label_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Primaru Label 2"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:text="@={formViewModel.primaryLabel2}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_primary_2_value_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/pass_primary_2_label_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/pass_primary_2_label_input"
+                app:layout_constraintTop_toTopOf="@+id/pass_primary_2_label_input">
+
+                <com.diyankomitov.digitalpasswallet.views.form.components.CreatePassEditText
+                    android:id="@+id/pass_primary_2_value_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Primary Value 2"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:text="@={formViewModel.primaryValue2}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/pass_colors_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_primary_2_label_input" />
+
+            <TextView
+                android:id="@+id/pass_colors_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Colors (Tap on color to change)"
+                app:layout_constraintBottom_toTopOf="@+id/pass_colors_background_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider5" />
+
+            <TextView
+                android:id="@+id/pass_colors_background_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Background Color"
+                app:layout_constraintBottom_toTopOf="@+id/pass_colors_background_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_colors_label" />
+
+            <TextView
+                android:id="@+id/pass_colors_background_input"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@{safeUnbox(formViewModel.backgroundColor)}"
+                android:gravity="center"
+                android:onClick="launchColorPickerDialog"
+                android:text="@{ColorUtils.getHexStringFromColorInt(safeUnbox(formViewModel.backgroundColor))}"
+                android:textColor="@{ColorUtils.getColorBasedOnBackgroundColor(safeUnbox(formViewModel.backgroundColor))}"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/pass_colors_foreground_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_colors_background_label" />
+
+            <TextView
+                android:id="@+id/pass_colors_foreground_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Foreground Color"
+                app:layout_constraintBottom_toTopOf="@+id/pass_colors_foreground_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_colors_background_input" />
+
+            <TextView
+                android:id="@+id/pass_colors_foreground_input"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@{safeUnbox(formViewModel.valueColor)}"
+                android:gravity="center"
+                android:onClick="launchColorPickerDialog"
+                android:text="@{ColorUtils.getHexStringFromColorInt(safeUnbox(formViewModel.valueColor))}"
+                android:textColor="@{ColorUtils.getColorBasedOnBackgroundColor(safeUnbox(formViewModel.valueColor))}"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/pass_colors_label_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_colors_foreground_label" />
+
+            <TextView
+                android:id="@+id/pass_colors_label_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Label Color"
+                app:layout_constraintBottom_toTopOf="@+id/pass_colors_label_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_colors_foreground_input" />
+
+            <TextView
+                android:id="@+id/pass_colors_label_input"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@{safeUnbox(formViewModel.labelColor)}"
+                android:gravity="center"
+                android:onClick="launchColorPickerDialog"
+                android:text="@{ColorUtils.getHexStringFromColorInt(safeUnbox(formViewModel.labelColor))}"
+                android:textColor="@{ColorUtils.getColorBasedOnBackgroundColor(safeUnbox(formViewModel.labelColor))}"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_colors_label_label" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{formViewModel.passType != null ? View.VISIBLE : View.GONE}"
+                app:constraint_referenced_ids="pass_transit_type_label, air_transit_type_input, bus_transit_type_input, train_transit_type_input, boat_transit_type_input, generic_transit_type_input, divider2, pass_barcode_format_label, qr_barcode_format_input, aztec_barcode_format_input, pdf417_barcode_format_input, code128_barcode_format_input, pass_barcode_input, barcode_image_button, divider3, pass_description_input, divider4, pass_primary_1_label_input, pass_primary_1_value_input, pass_primary_2_label_input, pass_primary_2_value_input, divider5, pass_colors_label, pass_colors_background_label, pass_colors_background_input, pass_colors_foreground_label, pass_colors_foreground_input, pass_colors_label_label, pass_colors_label_input" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{formViewModel.passType == PassType.BOARDING_PASS ? View.VISIBLE : View.GONE}"
+                app:constraint_referenced_ids="pass_transit_type_label, air_transit_type_input, bus_transit_type_input, train_transit_type_input, boat_transit_type_input, generic_transit_type_input, divider2, pass_primary_2_label_input, pass_primary_2_value_input, divider5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

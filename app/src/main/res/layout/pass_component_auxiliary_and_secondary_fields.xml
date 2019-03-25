@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="PassAuxiliaryAndSecondaryFieldsDataBinding">
+
+        <variable
+            name="passViewModel"
+            type="com.diyankomitov.digitalpasswallet.viewmodel.pass.PassViewModel" />
+    </data>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:alignContent="flex_start"
+        app:alignItems="flex_start"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start"
+        app:showDivider="middle"
+        app:dividerDrawable="@drawable/flexbox_divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:showIn="@layout/pass_item_event_ticket">
+
+        <include
+            layout="@layout/pass_component_auxiliary_fields"
+            bind:passViewModel="@{passViewModel}" />
+
+        <com.diyankomitov.digitalpasswallet.views.pass.components.PassFieldLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start|center_vertical"
+            android:orientation="vertical"
+            app:layout_flexGrow="0"
+            app:layout_flexShrink="1">
+
+            <TextView
+                android:id="@+id/auxiliary_label_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:singleLine="true"
+                android:text="@{passViewModel.auxiliaryLabel5}"
+                android:textColor="@{safeUnbox(passViewModel.labelColor)}"
+                android:textSize="@dimen/fieldLabelTextSize"
+                android:textStyle="bold" />
+
+            <com.diyankomitov.digitalpasswallet.views.pass.components.PassFieldValueTextView
+                android:id="@+id/auxiliary_value_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start|center_vertical"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{passViewModel.auxiliaryValue5}"
+                android:textColor="@{safeUnbox(safeUnbox(passViewModel.foregroundColor))}"
+                android:textSize="@dimen/auxiliaryFieldValueTextSize"
+                app:minTextSize="@dimen/fieldLabelTextSize"
+                app:sizeToFit="true" />
+
+        </com.diyankomitov.digitalpasswallet.views.pass.components.PassFieldLinearLayout>
+
+        <include
+            layout="@layout/pass_component_secondary_fields"
+            bind:passViewModel="@{passViewModel}" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+</layout>

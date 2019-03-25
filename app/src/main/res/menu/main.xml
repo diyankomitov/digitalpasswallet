@@ -5,9 +5,21 @@
         android:id="@+id/action_add_pass"
         android:icon="@drawable/ic_add"
         android:title="@string/add_pass"
-        app:showAsAction="always" />
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/action_add_pass_from_file"
+                android:icon="@drawable/ic_add_from_file"
+                android:onClick="onAddFromFileButtonClicked"
+                android:title="@string/add_from_file"
+                app:showAsAction="withText" />
+            <item
+                android:id="@+id/action_create_pass_from_form"
+                android:icon="@drawable/ic_add_fill_form"
+                android:onClick="onCreateFromFormButtonClicked"
+                android:title="@string/create_from_form"
+                app:showAsAction="withText" />
+        </menu>
+    </item>
 </menu>
-
-
-    <!--android:orderInCategory="100"-->
-    <!--android:title="Add Pass"-->

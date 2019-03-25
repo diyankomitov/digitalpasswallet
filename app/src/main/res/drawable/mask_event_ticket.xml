@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Surrounding rectangle that will scale and is transparent to allow for correct masking -->
+    <item android:gravity="top|center">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+        </shape>
+    </item>
+
+    <!-- Top Cutout: doesnt scale due to defined drawable and gravity -->
+    <item
+        android:drawable="@drawable/mask_event_ticket_cutout"
+        android:gravity="top|center_horizontal">
+
+    </item>
+
+</layer-list>

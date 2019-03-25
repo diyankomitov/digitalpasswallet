@@ -5,4 +5,26 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Text sizes -->
+    <dimen name="fieldLabelTextSize">10sp</dimen>
+    <dimen name="headerFieldValueTextSize">18sp</dimen>
+    <dimen name="primaryFieldValueTextSize">40sp</dimen>
+    <dimen name="secondaryFieldValueTextSize">16sp</dimen>
+    <dimen name="auxiliaryFieldValueTextSize">16sp</dimen>
+
+    <!-- Image sizes -->
+    <dimen name="logoMaxWidth">160dp</dimen>
+    <dimen name="logoHeight">50dp</dimen>
+    <dimen name="thumbnailSize">90dp</dimen>
+    <dimen name="stripMaxWidth">375dp</dimen>
+    <dimen name="stripTallHeight">144dp</dimen>
+    <dimen name="stripShortHeight">98dp</dimen>
+    <dimen name="footerMaxWidth">286dp</dimen>
+    <dimen name="footerHeight">15dp</dimen>
+    <dimen name="iconSize">29dp</dimen>
+    <dimen name="backgroundWidth">180dp</dimen>
+    <dimen name="backgroundHeight">220dp</dimen>
+
+
 </resources>
