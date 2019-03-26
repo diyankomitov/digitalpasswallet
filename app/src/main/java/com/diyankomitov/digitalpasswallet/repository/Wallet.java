@@ -42,11 +42,6 @@ public class Wallet {
         PassDatabase passDatabase = PassDatabase.getInstance(application);
         passDao = passDatabase.passDao();
         passesLiveData = passDao.getAllPasses();
-        
-//        File pkpassDirectory = new File(Environment.getExternalStorageDirectory(), PASS_DIRECTORY + "/pkpass");
-//        if (pkpassDirectory.exists()) {
-//            passFileIndex = pkpassDirectory.list().length;
-//        }
     }
     
     public static synchronized Wallet getInstance(Application application) {
@@ -153,25 +148,4 @@ public class Wallet {
         Log.d(TAG, "deleteById() called with: passId = [" + passId + "]");
         AsyncTask.execute(() -> passDao.delete(passId));
     }
-    
-    //    private Map<String, List<Pass>> walletMap;
-    //
-    //    public Wallet() {
-    //        walletMap = new HashMap<>();
-    //    }
-    //
-    //    public void addCategory(String name) {
-    //        walletMap.put(name, new ArrayList<Pass>());
-    //    }
-    //
-    //    public List<Pass> getPassesFromCategory(String name) {
-    //        if (name.equals("")) {
-    //            return walletMap.get("default");
-    //        }
-    //        return walletMap.get(name);
-    //    }
-    //
-    //    public void addPassToCategory(String categoryName, Pass pass) {
-    //        walletMap.get(categoryName).add(pass);
-    //    }
 }
